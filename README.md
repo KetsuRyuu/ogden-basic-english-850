@@ -1,6 +1,6 @@
 # Ogden 基础英语 850 词 · 中文背诵版
 
-一个基于 Apple 官网设计语言的单文件 HTML 学习工具，用于帮助中文母语者系统背诵 C. K. Ogden 提出的 850 词 Basic English 词表。
+一个单文件 HTML 学习工具，用于帮助中文母语者系统背诵 C. K. Ogden 提出的 850 词 Basic English 词表。
 
 ## 这是什么
 
