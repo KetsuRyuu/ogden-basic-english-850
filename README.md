@@ -2,6 +2,26 @@
 
 一个单文件 HTML 学习工具，用于帮助中文母语者系统背诵 C. K. Ogden 提出的 850 词 Basic English 词表。
 
+## 两种使用方式
+
+### 🌐 在线版（推荐 · 无需下载）
+
+直接访问在线页面：
+
+> **https://ketsuryuu.github.io/ogden-basic-english-850/**
+
+支持手机 / 平板 / 电脑，进度自动保存在当前浏览器中，下次打开继续背。
+
+### 📄 打印版 PDF（A4）
+
+适合打印装订或在 PDF 阅读器中翻阅：
+
+> 仓库内 [`Ogden_850_A4打印版.pdf`](Ogden_850_A4打印版.pdf) — 共 29 页 A4，含封面 + 五大类词表。
+
+### 💻 离线 HTML
+
+下载仓库中的 [`Ogden_850_背诵版.html`](Ogden_850_背诵版.html)（与 `index.html` 内容相同），双击在任意现代浏览器中打开即可，**无需联网、无需安装**。发音调用浏览器自带的 Web Speech API。
+
 ## 这是什么
 
 1930 年，英国学者 Charles Kay Ogden 提出 **Basic English**——一套仅用 850 个英文单词构成的受控语言，理论上足以表达日常与多数书面内容。这份词表至今仍是 ESL/EFL 教学中最常被引用的核心词表之一。
@@ -25,11 +45,7 @@
 - 中文简义：精炼翻译，多义词用顿号分隔主要义项
 - 每张卡片链接到 `oed.com` 对应词条页（OED 全文需订阅，链接便于随时深查历史释义）
 
-## 使用方法
-
-直接双击 `Ogden_850_背诵版.html` 在任意现代浏览器中打开即可，**无需联网、无需安装**。发音调用浏览器自带的 Web Speech API。
-
-### 主要功能
+## 主要功能（在线版 / 离线 HTML）
 
 - **类别筛选**：顶部 5 个分类 Tab + 「全部」
 - **A–Z 字母索引**：快速跳转到指定字母开头的词
@@ -49,7 +65,9 @@
 ```
 .
 ├── Ogden_27s_20Basic_20English_20Words_20List_20alphabetic.pdf  # 原始词表 PDF
-├── Ogden_850_背诵版.html                                          # 最终学习页面（单文件）
+├── Ogden_850_背诵版.html                                          # 交互学习页面（单文件）
+├── index.html                                                    # 与上方相同，作 GitHub Pages 入口
+├── Ogden_850_A4打印版.pdf                                        # A4 可打印 PDF（29 页）
 └── README.md
 ```
 
@@ -64,6 +82,7 @@
 
 ## 相关链接
 
+- [在线版页面](https://ketsuryuu.github.io/ogden-basic-english-850/)
 - [Basic English — Wikipedia](https://en.wikipedia.org/wiki/Basic_English)
 - [Wikipedia:Basic English ordered wordlist](https://simple.wikipedia.org/wiki/Wikipedia:Basic_English_ordered_wordlist)
 - [Oxford English Dictionary (OED)](https://www.oed.com/) — 用于查阅每个词的权威历史释义
@@ -71,4 +90,4 @@
 
 ## License
 
-词表本身为 Ogden 公开发表的历史资料（1930 年初版）；本仓库的整理工作（HTML 页面、中文释义、交互设计）按 [MIT License](LICENSE) 发布，欢迎自由使用、修改、分发。
+词表本身为 Ogden 公开发表的历史资料（1930 年初版）；本仓库的整理工作（HTML 页面、中文释义、交互设计、A4 排版）按 [MIT License](LICENSE) 发布，欢迎自由使用、修改、分发。

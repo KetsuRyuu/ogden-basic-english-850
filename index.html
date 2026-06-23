@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ogden 基础英语 850 词 · 中文背诵版</title>
+<style>
+:root{
+  --bg:#f5f5f7; --bg-elevated:#ffffff; --card:#ffffff;
+  --text:#1d1d1f; --text-secondary:#6e6e73; --text-tertiary:#86868b;
+  --separator:#d2d2d7; --separator-soft:#e8e8ed;
+  --accent:#0071e3; --accent-hover:#0077ED;
+  --cat-ops:#0071e3; --cat-tg:#ff9f0a; --cat-tp:#30d158;
+  --cat-qg:#bf5af2; --cat-qo:#ff375f;
+  --shadow:0 1px 3px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.04);
+  --shadow-lg:0 4px 16px rgba(0,0,0,.06),0 12px 40px rgba(0,0,0,.08);
+  --radius:18px; --radius-sm:12px; --radius-xs:8px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#000000; --bg-elevated:#1c1c1e; --card:#1c1c1e;
+    --text:#f5f5f7; --text-secondary:#a1a1a6; --text-tertiary:#6e6e73;
+    --separator:#38383a; --separator-soft:#2c2c2e;
+    --accent:#0a84ff; --accent-hover:#409CFF;
+    --cat-ops:#0a84ff; --cat-tg:#ff9f0a; --cat-tp:#30d158;
+    --cat-qg:#bf5af2; --cat-qo:#ff375f;
+    --shadow:0 1px 3px rgba(0,0,0,.3),0 4px 12px rgba(0,0,0,.4);
+    --shadow-lg:0 4px 16px rgba(0,0,0,.4),0 12px 40px rgba(0,0,0,.5);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg); color:var(--text);
+  font-size:15px; line-height:1.5; -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input{font-family:inherit}
+
+/* ===== HEADER ===== */
+.header{
+  position:sticky; top:0; z-index:100;
+  background:rgba(245,245,247,.8);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--separator-soft);
+}
+@media (prefers-color-scheme: dark){
+  .header{background:rgba(0,0,0,.8)}
+}
+.header-inner{
+  max-width:1400px; margin:0 auto; padding:18px 24px 14px;
+}
+.title-row{
+  display:flex; align-items:baseline; flex-wrap:wrap; gap:8px 16px;
+}
+.title{
+  font-size:28px; font-weight:700; letter-spacing:-.01em;
+}
+.title .accent{color:var(--accent)}
+.subtitle{
+  font-size:13px; color:var(--text-tertiary); font-weight:400;
+  letter-spacing:.02em;
+}
+.stats-row{
+  display:flex; gap:24px; margin-top:14px; flex-wrap:wrap; align-items:center;
+}
+.stat{display:flex; align-items:baseline; gap:6px}
+.stat-num{
+  font-size:22px; font-weight:600; color:var(--text);
+  font-variant-numeric:tabular-nums;
+}
+.stat-num.accent{color:var(--accent)}
+.stat-num.green{color:#30d158}
+.stat-label{font-size:12px; color:var(--text-tertiary)}
+.progress-track{
+  flex:1; min-width:200px; height:6px;
+  background:var(--separator-soft); border-radius:3px; overflow:hidden;
+  display:flex;
+}
+.progress-fill{
+  height:100%; transition:width .3s ease;
+}
+.progress-fill.reviewed{background:var(--accent)}
+.progress-fill.mastered{background:#30d158}
+
+/* ===== TOOLBAR ===== */
+.toolbar{
+  max-width:1400px; margin:0 auto; padding:14px 24px 12px;
+  display:flex; flex-direction:column; gap:12px;
+}
+.search-wrap{
+  position:relative; flex:1; max-width:480px;
+}
+.search-wrap svg{
+  position:absolute; left:14px; top:50%; transform:translateY(-50%);
+  width:16px; height:16px; color:var(--text-tertiary); pointer-events:none;
+}
+.search{
+  width:100%; height:40px; padding:0 14px 0 40px;
+  background:var(--bg-elevated); border:1px solid var(--separator-soft);
+  border-radius:10px; font-size:15px; color:var(--text);
+  outline:none; transition:border-color .2s, box-shadow .2s;
+}
+.search:focus{border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,113,227,.15)}
+.search::placeholder{color:var(--text-tertiary)}
+
+.toolbar-row{
+  display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+}
+.cat-tab{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 12px; border-radius:999px;
+  background:var(--bg-elevated); border:1px solid var(--separator-soft);
+  font-size:13px; color:var(--text-secondary); font-weight:500;
+  cursor:pointer; transition:all .15s;
+  white-space:nowrap;
+}
+.cat-tab:hover{border-color:var(--separator); color:var(--text)}
+.cat-tab.active{
+  background:var(--text); color:var(--bg); border-color:var(--text);
+}
+.cat-tab .dot{
+  width:7px; height:7px; border-radius:50%; display:inline-block;
+}
+.cat-tab .cnt{
+  font-size:11px; opacity:.65; font-variant-numeric:tabular-nums;
+}
+
+.toolbar-actions{
+  margin-left:auto; display:flex; gap:8px;
+}
+.btn{
+  height:36px; padding:0 16px; border-radius:10px;
+  font-size:13px; font-weight:500; cursor:pointer;
+  display:inline-flex; align-items:center; gap:6px;
+  transition:all .15s;
+}
+.btn-primary{
+  background:var(--accent); color:#fff;
+}
+.btn-primary:hover{background:var(--accent-hover)}
+.btn-ghost{
+  background:transparent; color:var(--text-secondary);
+  border:1px solid var(--separator-soft);
+}
+.btn-ghost:hover{color:var(--text); border-color:var(--separator)}
+
+/* A-Z index */
+.az-index{
+  display:flex; gap:2px; flex-wrap:wrap; padding:4px 0;
+  max-width:100%; overflow-x:auto;
+}
+.az-index a{
+  font-size:12px; font-weight:500; color:var(--text-tertiary);
+  padding:3px 7px; border-radius:6px; transition:all .15s;
+  font-variant-numeric:tabular-nums;
+}
+.az-index a:hover{background:var(--bg-elevated); color:var(--accent)}
+.az-index a.empty{opacity:.25; pointer-events:none}
+
+/* ===== GRID ===== */
+.grid-wrap{
+  max-width:1400px; margin:0 auto; padding:8px 24px 80px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
+  gap:14px;
+}
+.card{
+  background:var(--card); border-radius:var(--radius);
+  box-shadow:var(--shadow); padding:18px 18px 14px;
+  display:flex; flex-direction:column; gap:8px;
+  position:relative; transition:transform .15s, box-shadow .2s;
+  border:1px solid var(--separator-soft);
+}
+.card:hover{transform:translateY(-1px); box-shadow:var(--shadow-lg)}
+.card.reviewed{
+  border-color:rgba(0,113,227,.3);
+}
+.card.mastered{
+  border-color:rgba(48,209,88,.4);
+  background:linear-gradient(180deg,rgba(48,209,88,.05),transparent 30%);
+}
+.cat-strip{
+  position:absolute; top:0; left:18px; right:18px; height:3px;
+  border-radius:0 0 3px 3px;
+}
+.card-top{
+  display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;
+  padding-top:4px;
+}
+.word{
+  font-size:24px; font-weight:600; letter-spacing:-.01em;
+  color:var(--text);
+}
+.pos{
+  font-size:11px; font-weight:500; color:var(--text-tertiary);
+  background:var(--separator-soft); padding:2px 6px; border-radius:5px;
+  text-transform:lowercase; letter-spacing:.02em;
+}
+.oed-link{
+  margin-left:auto; font-size:10px; color:var(--text-tertiary);
+  padding:3px 7px; border-radius:5px; transition:all .15s;
+  border:1px solid transparent;
+}
+.oed-link:hover{color:var(--accent); border-color:var(--separator-soft); background:var(--bg-elevated)}
+.ipa{
+  font-size:13px; color:var(--text-tertiary);
+  font-family:ui-monospace,"SF Mono",Menlo,monospace;
+  letter-spacing:.01em;
+}
+.en-def{
+  font-size:13px; color:var(--text-secondary); font-style:italic;
+  line-height:1.4;
+}
+.zh-def{
+  font-size:17px; color:var(--text); font-weight:500;
+  margin-top:2px; line-height:1.35;
+}
+.card-bottom{
+  display:flex; align-items:center; gap:6px;
+  margin-top:6px; padding-top:10px;
+  border-top:1px solid var(--separator-soft);
+}
+.speak-btn{
+  width:28px; height:28px; border-radius:50%;
+  display:inline-flex; align-items:center; justify-content:center;
+  background:var(--separator-soft); color:var(--text-secondary);
+  transition:all .15s;
+}
+.speak-btn:hover{background:var(--accent); color:#fff}
+.speak-btn svg{width:13px; height:13px}
+.check-group{
+  margin-left:auto; display:flex; gap:8px;
+}
+.check{
+  display:inline-flex; align-items:center; gap:5px;
+  font-size:11px; color:var(--text-tertiary);
+  cursor:pointer; user-select:none;
+  padding:4px 8px; border-radius:6px;
+  transition:all .15s;
+}
+.check:hover{background:var(--separator-soft)}
+.check input{display:none}
+.check .box{
+  width:14px; height:14px; border-radius:4px;
+  border:1.5px solid var(--separator); background:var(--bg-elevated);
+  display:inline-flex; align-items:center; justify-content:center;
+  transition:all .15s;
+}
+.check .box svg{width:9px; height:9px; opacity:0; color:#fff}
+.check.checked-review .box{background:var(--accent); border-color:var(--accent)}
+.check.checked-review .box svg{opacity:1}
+.check.checked-master .box{background:#30d158; border-color:#30d158}
+.check.checked-master .box svg{opacity:1}
+.check.checked-review{color:var(--accent)}
+.check.checked-master{color:#30d158}
+
+.empty-state{
+  grid-column:1/-1; text-align:center; padding:80px 20px;
+  color:var(--text-tertiary);
+}
+.empty-state .big{font-size:48px; margin-bottom:12px}
+
+/* ===== FLASHCARD MODAL ===== */
+.modal-overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,.5);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  z-index:200; display:none; align-items:center; justify-content:center;
+  padding:24px;
+}
+.modal-overlay.show{display:flex; animation:fadein .2s ease}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.flashcard{
+  background:var(--card); border-radius:24px;
+  max-width:560px; width:100%; padding:32px;
+  box-shadow:var(--shadow-lg);
+  animation:slideup .25s ease;
+}
+@keyframes slideup{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.fc-header{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:20px;
+}
+.fc-counter{
+  font-size:13px; color:var(--text-tertiary);
+  font-variant-numeric:tabular-nums;
+}
+.fc-close{
+  width:28px; height:28px; border-radius:50%;
+  background:var(--separator-soft); color:var(--text-secondary);
+  display:inline-flex; align-items:center; justify-content:center;
+  font-size:16px; line-height:1;
+}
+.fc-close:hover{background:var(--separator); color:var(--text)}
+.fc-word{
+  font-size:44px; font-weight:700; letter-spacing:-.02em;
+  text-align:center; margin:8px 0 4px;
+}
+.fc-meta{
+  text-align:center; font-size:14px; color:var(--text-tertiary);
+  display:flex; gap:10px; justify-content:center; align-items:center;
+  flex-wrap:wrap; margin-bottom:18px;
+}
+.fc-meta .pos{
+  background:var(--separator-soft); padding:3px 8px;
+  font-size:11px; border-radius:5px;
+}
+.fc-reveal{
+  background:var(--bg); border-radius:14px; padding:18px;
+  margin:8px 0 20px; min-height:90px;
+  display:flex; flex-direction:column; gap:6px; justify-content:center;
+  text-align:center;
+}
+.fc-zh{
+  font-size:24px; font-weight:600; color:var(--text);
+}
+.fc-en{
+  font-size:14px; color:var(--text-secondary); font-style:italic;
+}
+.fc-ipa{
+  font-size:13px; color:var(--text-tertiary);
+  font-family:ui-monospace,monospace;
+}
+.fc-hidden{
+  color:var(--text-tertiary); font-size:14px;
+  cursor:pointer; user-select:none;
+}
+.fc-hidden:hover{color:var(--accent)}
+.fc-actions{
+  display:flex; gap:8px; flex-wrap:wrap; justify-content:center;
+}
+.fc-btn{
+  height:42px; padding:0 20px; border-radius:21px;
+  font-size:14px; font-weight:500; cursor:pointer;
+  display:inline-flex; align-items:center; gap:6px;
+  transition:all .15s;
+}
+.fc-btn-primary{background:var(--accent); color:#fff}
+.fc-btn-primary:hover{background:var(--accent-hover)}
+.fc-btn-green{background:#30d158; color:#fff}
+.fc-btn-green:hover{background:#28a745}
+.fc-btn-red{background:var(--cat-qo); color:#fff}
+.fc-btn-ghost{
+  background:var(--separator-soft); color:var(--text-secondary);
+}
+.fc-btn-ghost:hover{color:var(--text)}
+.fc-toggle-row{
+  display:flex; gap:10px; justify-content:center; align-items:center;
+  margin-bottom:16px; font-size:12px; color:var(--text-tertiary);
+}
+.fc-toggle{display:inline-flex; align-items:center; gap:6px; cursor:pointer}
+.fc-toggle input{
+  appearance:none; width:32px; height:18px; border-radius:9px;
+  background:var(--separator); position:relative; cursor:pointer;
+  transition:background .2s;
+}
+.fc-toggle input::after{
+  content:""; position:absolute; top:2px; left:2px;
+  width:14px; height:14px; border-radius:50%;
+  background:#fff; transition:transform .2s;
+}
+.fc-toggle input:checked{background:var(--accent)}
+.fc-toggle input:checked::after{transform:translateX(14px)}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:640px){
+  .header-inner,.toolbar,.grid-wrap{padding-left:16px;padding-right:16px}
+  .title{font-size:22px}
+  .grid{grid-template-columns:1fr}
+  .stats-row{gap:14px}
+  .toolbar-actions{margin-left:0; width:100%}
+  .toolbar-actions .btn{flex:1; justify-content:center}
+}
+
+/* footer note */
+.foot{
+  max-width:1400px; margin:0 auto; padding:0 24px 60px;
+  font-size:12px; color:var(--text-tertiary); text-align:center;
+}
+.foot a{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="title-row">
+      <div class="title">Ogden 基础英语 <span class="accent">850</span> 词</div>
+      <div class="subtitle">British Academic Scientific International Commercial English · 中文背诵版</div>
+    </div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num" id="stat-total">850</div><div class="stat-label">总词数</div></div>
+      <div class="stat"><div class="stat-num accent" id="stat-reviewed">0</div><div class="stat-label">已背诵</div></div>
+      <div class="stat"><div class="stat-num green" id="stat-mastered">0</div><div class="stat-label">已掌握</div></div>
+      <div class="progress-track" title="背诵进度">
+        <div class="progress-fill reviewed" id="bar-reviewed" style="width:0%"></div>
+        <div class="progress-fill mastered" id="bar-mastered" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-row">
+    <div class="search-wrap">
+      <svg viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input class="search" id="search" type="search" placeholder="搜索单词 / 中文 / 英文释义 / 词性" autocomplete="off">
+    </div>
+    <div class="toolbar-actions">
+      <button class="btn btn-primary" id="btn-flash">随机抽背</button>
+      <button class="btn btn-ghost" id="btn-reset">重置进度</button>
+    </div>
+  </div>
+  <div class="toolbar-row" id="cat-tabs"></div>
+  <div class="az-index" id="az-index"></div>
+</div>
+
+<div class="grid-wrap">
+  <div class="grid" id="grid"></div>
+</div>
+
+<div class="foot">
+  数据源：Charles Kay Ogden《Basic English》(1930) · 词义参考 Ogden 官方分类与权威英汉词典 · 释义仅供参考，详细历史释义请查阅
+  <a href="https://www.oed.com/" target="_blank" rel="noopener">OED</a>
+</div>
+
+<div class="modal-overlay" id="modal">
+  <div class="flashcard">
+    <div class="fc-header">
+      <div class="fc-counter" id="fc-counter">—</div>
+      <button class="fc-close" id="fc-close">×</button>
+    </div>
+    <div class="fc-word" id="fc-word">—</div>
+    <div class="fc-meta">
+      <span class="pos" id="fc-pos">—</span>
+      <span class="fc-ipa" id="fc-ipa">—</span>
+    </div>
+    <div class="fc-reveal" id="fc-reveal">
+      <div class="fc-hidden" id="fc-hidden">点击显示中文 / 释义</div>
+    </div>
+    <div class="fc-toggle-row">
+      <label class="fc-toggle"><input type="checkbox" id="fc-include-mastered"><span>包含已掌握</span></label>
+      <label class="fc-toggle"><input type="checkbox" id="fc-autoplay" checked><span>自动发音</span></label>
+    </div>
+    <div class="fc-actions">
+      <button class="fc-btn fc-btn-ghost" id="fc-skip">跳过</button>
+      <button class="fc-btn fc-btn-red" id="fc-unknown">不熟</button>
+      <button class="fc-btn fc-btn-green" id="fc-known">掌握</button>
+      <button class="fc-btn fc-btn-primary" id="fc-next">下一个 →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const WORDS = [{"w": "a", "cat": "operations", "pos": "art.", "ipa": "/ə/", "en": "used before a noun", "zh": "一个；每一"}, {"w": "about", "cat": "operations", "pos": "prep.", "ipa": "/əˈbaʊt/", "en": "on the subject of; near", "zh": "关于；大约"}, {"w": "across", "cat": "operations", "pos": "prep.", "ipa": "/əˈkrɒs/", "en": "from one side to the other", "zh": "横过；在对面"}, {"w": "after", "cat": "operations", "pos": "prep.", "ipa": "/ˈɑːftə/", "en": "later than; behind", "zh": "在…之后；随后"}, {"w": "again", "cat": "operations", "pos": "adv.", "ipa": "/əˈɡen/", "en": "once more", "zh": "再一次；又"}, {"w": "against", "cat": "operations", "pos": "prep.", "ipa": "/əˈɡenst/", "en": "in opposition to; touching", "zh": "反对；紧靠"}, {"w": "all", "cat": "operations", "pos": "adj.", "ipa": "/ɔːl/", "en": "the whole of", "zh": "全部的；一切的"}, {"w": "almost", "cat": "operations", "pos": "adv.", "ipa": "/ˈɔːlməʊst/", "en": "nearly", "zh": "几乎；差不多"}, {"w": "among", "cat": "operations", "pos": "prep.", "ipa": "/əˈmʌŋ/", "en": "in the middle of", "zh": "在…之中"}, {"w": "and", "cat": "operations", "pos": "conj.", "ipa": "/ənd/", "en": "also; plus", "zh": "和；与"}, {"w": "any", "cat": "operations", "pos": "adj.", "ipa": "/ˈeni/", "en": "one or some of whatever kind", "zh": "任何；一些"}, {"w": "as", "cat": "operations", "pos": "prep.", "ipa": "/əz/", "en": "in the role of; like", "zh": "作为；如同"}, {"w": "at", "cat": "operations", "pos": "prep.", "ipa": "/ət/", "en": "in a place; on a time", "zh": "在（地点/时刻）"}, {"w": "be", "cat": "operations", "pos": "v.", "ipa": "/biː/", "en": "exist; happen", "zh": "是；存在"}, {"w": "because", "cat": "operations", "pos": "conj.", "ipa": "/bɪˈkɒz/", "en": "for the reason that", "zh": "因为"}, {"w": "before", "cat": "operations", "pos": "prep.", "ipa": "/bɪˈfɔː/", "en": "earlier than; in front of", "zh": "在…之前"}, {"w": "between", "cat": "operations", "pos": "prep.", "ipa": "/bɪˈtwiːn/", "en": "in the middle of two", "zh": "在（两者）之间"}, {"w": "but", "cat": "operations", "pos": "conj.", "ipa": "/bʌt/", "en": "however; except", "zh": "但是；除了"}, {"w": "by", "cat": "operations", "pos": "prep.", "ipa": "/baɪ/", "en": "near; by means of", "zh": "由；被；在…旁"}, {"w": "come", "cat": "operations", "pos": "v.", "ipa": "/kʌm/", "en": "move toward the speaker", "zh": "来；到达"}, {"w": "do", "cat": "operations", "pos": "v.", "ipa": "/duː/", "en": "perform; act", "zh": "做；干"}, {"w": "down", "cat": "operations", "pos": "adv.", "ipa": "/daʊn/", "en": "to a lower place", "zh": "向下；下来"}, {"w": "east", "cat": "operations", "pos": "n.", "ipa": "/iːst/", "en": "direction of sunrise", "zh": "东；东方"}, {"w": "enough", "cat": "operations", "pos": "adj.", "ipa": "/ɪˈnʌf/", "en": "as much as needed", "zh": "足够的"}, {"w": "even", "cat": "operations", "pos": "adv.", "ipa": "/ˈiːvən/", "en": "used to stress a point", "zh": "甚至；还"}, {"w": "ever", "cat": "operations", "pos": "adv.", "ipa": "/ˈevə/", "en": "at any time", "zh": "曾经；究竟"}, {"w": "every", "cat": "operations", "pos": "adj.", "ipa": "/ˈevri/", "en": "each one of all", "zh": "每个；所有的"}, {"w": "far", "cat": "operations", "pos": "adv.", "ipa": "/fɑː/", "en": "a long way off", "zh": "远；遥远的"}, {"w": "for", "cat": "operations", "pos": "prep.", "ipa": "/fɔː/", "en": "in order to; because of", "zh": "为了；由于"}, {"w": "forward", "cat": "operations", "pos": "adv.", "ipa": "/ˈfɔːwəd/", "en": "toward the front", "zh": "向前；前进"}, {"w": "from", "cat": "operations", "pos": "prep.", "ipa": "/frɒm/", "en": "starting at; out of", "zh": "从；来自"}, {"w": "get", "cat": "operations", "pos": "v.", "ipa": "/ɡet/", "en": "obtain; become", "zh": "得到；变得"}, {"w": "give", "cat": "operations", "pos": "v.", "ipa": "/ɡɪv/", "en": "hand to; offer", "zh": "给；赠送"}, {"w": "go", "cat": "operations", "pos": "v.", "ipa": "/ɡəʊ/", "en": "move; leave", "zh": "去；离开"}, {"w": "have", "cat": "operations", "pos": "v.", "ipa": "/hæv/", "en": "own; hold", "zh": "有；拥有"}, {"w": "he", "cat": "operations", "pos": "pron.", "ipa": "/hiː/", "en": "male person spoken of", "zh": "他"}, {"w": "here", "cat": "operations", "pos": "adv.", "ipa": "/hɪə/", "en": "in this place", "zh": "这里"}, {"w": "how", "cat": "operations", "pos": "adv.", "ipa": "/haʊ/", "en": "in what way", "zh": "怎样；如何"}, {"w": "I", "cat": "operations", "pos": "pron.", "ipa": "/aɪ/", "en": "the speaker", "zh": "我"}, {"w": "if", "cat": "operations", "pos": "conj.", "ipa": "/ɪf/", "en": "supposing that", "zh": "如果；是否"}, {"w": "in", "cat": "operations", "pos": "prep.", "ipa": "/ɪn/", "en": "inside; during", "zh": "在…里；在…期间"}, {"w": "keep", "cat": "operations", "pos": "v.", "ipa": "/kiːp/", "en": "hold; continue", "zh": "保持；保留"}, {"w": "let", "cat": "operations", "pos": "v.", "ipa": "/let/", "en": "allow", "zh": "让；允许"}, {"w": "little", "cat": "operations", "pos": "adj.", "ipa": "/ˈlɪtl/", "en": "small; not much", "zh": "小的；很少的"}, {"w": "make", "cat": "operations", "pos": "v.", "ipa": "/meɪk/", "en": "create; cause to be", "zh": "制造；使"}, {"w": "may", "cat": "operations", "pos": "v.", "ipa": "/meɪ/", "en": "be allowed; be possible", "zh": "可以；可能"}, {"w": "much", "cat": "operations", "pos": "adj.", "ipa": "/mʌtʃ/", "en": "a large amount", "zh": "许多；大量"}, {"w": "near", "cat": "operations", "pos": "adv.", "ipa": "/nɪə/", "en": "close to", "zh": "近；靠近"}, {"w": "no", "cat": "operations", "pos": "adv.", "ipa": "/nəʊ/", "en": "word of denial; not any", "zh": "不；没有"}, {"w": "north", "cat": "operations", "pos": "n.", "ipa": "/nɔːθ/", "en": "direction opposite south", "zh": "北；北方"}, {"w": "not", "cat": "operations", "pos": "adv.", "ipa": "/nɒt/", "en": "word of denial", "zh": "不"}, {"w": "now", "cat": "operations", "pos": "adv.", "ipa": "/naʊ/", "en": "at this time", "zh": "现在；目前"}, {"w": "of", "cat": "operations", "pos": "prep.", "ipa": "/əv/", "en": "belonging to; about", "zh": "…的"}, {"w": "off", "cat": "operations", "pos": "adv.", "ipa": "/ɒf/", "en": "away; not on", "zh": "离开；关掉"}, {"w": "on", "cat": "operations", "pos": "prep.", "ipa": "/ɒn/", "en": "supported by; about", "zh": "在…上；关于"}, {"w": "only", "cat": "operations", "pos": "adv.", "ipa": "/ˈəʊnli/", "en": "and no other", "zh": "只有；仅仅"}, {"w": "or", "cat": "operations", "pos": "conj.", "ipa": "/ɔː/", "en": "showing a choice", "zh": "或者；还是"}, {"w": "other", "cat": "operations", "pos": "adj.", "ipa": "/ˈʌðə/", "en": "different; additional", "zh": "另外的；其他的"}, {"w": "out", "cat": "operations", "pos": "adv.", "ipa": "/aʊt/", "en": "away from inside", "zh": "出去；在外面"}, {"w": "over", "cat": "operations", "pos": "prep.", "ipa": "/ˈəʊvə/", "en": "above; finished", "zh": "在…上方；结束"}, {"w": "please", "cat": "operations", "pos": "v.", "ipa": "/pliːz/", "en": "give pleasure; polite word", "zh": "请；使高兴"}, {"w": "put", "cat": "operations", "pos": "v.", "ipa": "/pʊt/", "en": "place", "zh": "放；置"}, {"w": "quite", "cat": "operations", "pos": "adv.", "ipa": "/kwaɪt/", "en": "completely; rather", "zh": "完全；相当"}, {"w": "say", "cat": "operations", "pos": "v.", "ipa": "/seɪ/", "en": "speak; tell", "zh": "说；讲"}, {"w": "see", "cat": "operations", "pos": "v.", "ipa": "/siː/", "en": "use the eyes; understand", "zh": "看见；明白"}, {"w": "seem", "cat": "operations", "pos": "v.", "ipa": "/siːm/", "en": "appear to be", "zh": "似乎；看起来"}, {"w": "send", "cat": "operations", "pos": "v.", "ipa": "/send/", "en": "cause to go; dispatch", "zh": "送；发送"}, {"w": "so", "cat": "operations", "pos": "adv.", "ipa": "/səʊ/", "en": "thus; therefore", "zh": "所以；如此"}, {"w": "some", "cat": "operations", "pos": "adj.", "ipa": "/sʌm/", "en": "a number of; a little", "zh": "一些；若干"}, {"w": "south", "cat": "operations", "pos": "n.", "ipa": "/saʊθ/", "en": "direction opposite north", "zh": "南；南方"}, {"w": "still", "cat": "operations", "pos": "adv.", "ipa": "/stɪl/", "en": "even now; not moving", "zh": "仍然；静止的"}, {"w": "such", "cat": "operations", "pos": "adj.", "ipa": "/sʌtʃ/", "en": "of this kind", "zh": "这样的；如此"}, {"w": "take", "cat": "operations", "pos": "v.", "ipa": "/teɪk/", "en": "get hold of; carry", "zh": "拿；取；带"}, {"w": "than", "cat": "operations", "pos": "conj.", "ipa": "/ðæn/", "en": "comparing", "zh": "比"}, {"w": "that", "cat": "operations", "pos": "pron.", "ipa": "/ðæt/", "en": "yon one", "zh": "那；那个"}, {"w": "the", "cat": "operations", "pos": "art.", "ipa": "/ðə/", "en": "used to point out", "zh": "这；那"}, {"w": "then", "cat": "operations", "pos": "adv.", "ipa": "/ðen/", "en": "at that time; next", "zh": "那时；然后"}, {"w": "there", "cat": "operations", "pos": "adv.", "ipa": "/ðeə/", "en": "in that place", "zh": "那里"}, {"w": "this", "cat": "operations", "pos": "pron.", "ipa": "/ðɪs/", "en": "here one", "zh": "这；这个"}, {"w": "though", "cat": "operations", "pos": "conj.", "ipa": "/ðəʊ/", "en": "even if", "zh": "虽然；尽管"}, {"w": "through", "cat": "operations", "pos": "prep.", "ipa": "/θruː/", "en": "from end to end of", "zh": "穿过；通过"}, {"w": "till", "cat": "operations", "pos": "prep.", "ipa": "/tɪl/", "en": "up to the time of", "zh": "直到…为止"}, {"w": "to", "cat": "operations", "pos": "prep.", "ipa": "/tuː/", "en": "toward; in order to", "zh": "到；向"}, {"w": "together", "cat": "operations", "pos": "adv.", "ipa": "/təˈɡeðə/", "en": "with each other", "zh": "一起；共同"}, {"w": "tomorrow", "cat": "operations", "pos": "adv.", "ipa": "/təˈmɒrəʊ/", "en": "the day after today", "zh": "明天"}, {"w": "under", "cat": "operations", "pos": "prep.", "ipa": "/ˈʌndə/", "en": "below; beneath", "zh": "在…下面"}, {"w": "up", "cat": "operations", "pos": "adv.", "ipa": "/ʌp/", "en": "to a higher place", "zh": "向上；起来"}, {"w": "very", "cat": "operations", "pos": "adv.", "ipa": "/ˈveri/", "en": "in a high degree", "zh": "很；非常"}, {"w": "well", "cat": "operations", "pos": "adv.", "ipa": "/wel/", "en": "in a good way", "zh": "好；良好"}, {"w": "west", "cat": "operations", "pos": "n.", "ipa": "/west/", "en": "direction of sunset", "zh": "西；西方"}, {"w": "when", "cat": "operations", "pos": "adv.", "ipa": "/wen/", "en": "at what time", "zh": "何时；当…时"}, {"w": "where", "cat": "operations", "pos": "adv.", "ipa": "/weə/", "en": "in what place", "zh": "在哪里"}, {"w": "while", "cat": "operations", "pos": "conj.", "ipa": "/waɪl/", "en": "during the time that", "zh": "当…的时候"}, {"w": "who", "cat": "operations", "pos": "pron.", "ipa": "/huː/", "en": "what person", "zh": "谁"}, {"w": "why", "cat": "operations", "pos": "adv.", "ipa": "/waɪ/", "en": "for what reason", "zh": "为什么"}, {"w": "will", "cat": "operations", "pos": "v.", "ipa": "/wɪl/", "en": "future helper", "zh": "将；会"}, {"w": "with", "cat": "operations", "pos": "prep.", "ipa": "/wɪð/", "en": "accompanied by; using", "zh": "和…一起；用"}, {"w": "yes", "cat": "operations", "pos": "adv.", "ipa": "/jes/", "en": "word of agreement", "zh": "是；好"}, {"w": "yesterday", "cat": "operations", "pos": "adv.", "ipa": "/ˈjestədeɪ/", "en": "the day before today", "zh": "昨天"}, {"w": "you", "cat": "operations", "pos": "pron.", "ipa": "/juː/", "en": "person spoken to", "zh": "你；你们"}, {"w": "account", "cat": "things_general", "pos": "n.", "ipa": "/əˈkaʊnt/", "en": "a record of money; story", "zh": "账户；叙述"}, {"w": "act", "cat": "things_general", "pos": "n.", "ipa": "/ækt/", "en": "a thing done; law division", "zh": "行为；一幕"}, {"w": "addition", "cat": "things_general", "pos": "n.", "ipa": "/əˈdɪʃn/", "en": "adding; added thing", "zh": "加法；增加物"}, {"w": "adjustment", "cat": "things_general", "pos": "n.", "ipa": "/əˈdʒʌstmənt/", "en": "a small change", "zh": "调整；调节"}, {"w": "advertisement", "cat": "things_general", "pos": "n.", "ipa": "/ədˈvɜːtɪsmənt/", "en": "public notice", "zh": "广告"}, {"w": "agreement", "cat": "things_general", "pos": "n.", "ipa": "/əˈɡriːmənt/", "en": "harmony of opinion; deal", "zh": "同意；协议"}, {"w": "air", "cat": "things_general", "pos": "n.", "ipa": "/eə/", "en": "the gas we breathe", "zh": "空气；曲调"}, {"w": "amount", "cat": "things_general", "pos": "n.", "ipa": "/əˈmaʊnt/", "en": "a quantity", "zh": "数量；总额"}, {"w": "amusement", "cat": "things_general", "pos": "n.", "ipa": "/əˈmjuːzmənt/", "en": "enjoyment; fun", "zh": "娱乐；消遣"}, {"w": "animal", "cat": "things_general", "pos": "n.", "ipa": "/ˈænɪml/", "en": "a living creature", "zh": "动物"}, {"w": "answer", "cat": "things_general", "pos": "n.", "ipa": "/ˈɑːnsə/", "en": "a reply", "zh": "回答；答案"}, {"w": "apparatus", "cat": "things_general", "pos": "n.", "ipa": "/ˌæpəˈreɪtəs/", "en": "tools; equipment", "zh": "器械；装置"}, {"w": "approval", "cat": "things_general", "pos": "n.", "ipa": "/əˈpruːvl/", "en": "act of agreeing", "zh": "赞同；批准"}, {"w": "argument", "cat": "things_general", "pos": "n.", "ipa": "/ˈɑːɡjumənt/", "en": "a reason; a dispute", "zh": "论点；争论"}, {"w": "art", "cat": "things_general", "pos": "n.", "ipa": "/ɑːt/", "en": "creative skill; craft", "zh": "艺术；技艺"}, {"w": "attack", "cat": "things_general", "pos": "n.", "ipa": "/əˈtæk/", "en": "a violent attempt", "zh": "攻击；进攻"}, {"w": "attempt", "cat": "things_general", "pos": "n.", "ipa": "/əˈtempt/", "en": "an effort", "zh": "尝试；企图"}, {"w": "attention", "cat": "things_general", "pos": "n.", "ipa": "/əˈtenʃn/", "en": "care; notice", "zh": "注意；关心"}, {"w": "attraction", "cat": "things_general", "pos": "n.", "ipa": "/əˈtrækʃn/", "en": "pull; power of pulling", "zh": "吸引；吸引力"}, {"w": "authority", "cat": "things_general", "pos": "n.", "ipa": "/ɔːˈθɒrəti/", "en": "right to command", "zh": "权力；权威"}, {"w": "back", "cat": "things_general", "pos": "n.", "ipa": "/bæk/", "en": "rear part; opposite of front", "zh": "后面；背部"}, {"w": "balance", "cat": "things_general", "pos": "n.", "ipa": "/ˈbæləns/", "en": "even weight; stability", "zh": "平衡；余额"}, {"w": "base", "cat": "things_general", "pos": "n.", "ipa": "/beɪs/", "en": "lowest part; foundation", "zh": "基础；底部"}, {"w": "behavior", "cat": "things_general", "pos": "n.", "ipa": "/bɪˈheɪvjə/", "en": "way of acting", "zh": "行为；举止"}, {"w": "belief", "cat": "things_general", "pos": "n.", "ipa": "/bɪˈliːf/", "en": "trust; faith", "zh": "相信；信念"}, {"w": "birth", "cat": "things_general", "pos": "n.", "ipa": "/bɜːθ/", "en": "coming into life", "zh": "出生；诞生"}, {"w": "bit", "cat": "things_general", "pos": "n.", "ipa": "/bɪt/", "en": "a small piece", "zh": "一小块；一点"}, {"w": "bite", "cat": "things_general", "pos": "n.", "ipa": "/baɪt/", "en": "act of cutting with teeth", "zh": "咬；一口"}, {"w": "blood", "cat": "things_general", "pos": "n.", "ipa": "/blʌd/", "en": "red liquid in body", "zh": "血；血液"}, {"w": "blow", "cat": "things_general", "pos": "n.", "ipa": "/bləʊ/", "en": "a stroke of air; hit", "zh": "吹；一击"}, {"w": "body", "cat": "things_general", "pos": "n.", "ipa": "/ˈbɒdi/", "en": "the physical form", "zh": "身体；机构"}, {"w": "brass", "cat": "things_general", "pos": "n.", "ipa": "/brɑːs/", "en": "yellow metal", "zh": "黄铜"}, {"w": "bread", "cat": "things_general", "pos": "n.", "ipa": "/bred/", "en": "baked food made of flour", "zh": "面包"}, {"w": "breath", "cat": "things_general", "pos": "n.", "ipa": "/breθ/", "en": "air taken in; air let out", "zh": "呼吸；一口气"}, {"w": "brother", "cat": "things_general", "pos": "n.", "ipa": "/ˈbrʌðə/", "en": "male relative", "zh": "兄弟"}, {"w": "building", "cat": "things_general", "pos": "n.", "ipa": "/ˈbɪldɪŋ/", "en": "a structure with roof", "zh": "建筑物"}, {"w": "burn", "cat": "things_general", "pos": "n.", "ipa": "/bɜːn/", "en": "injury by fire", "zh": "烧伤"}, {"w": "burst", "cat": "things_general", "pos": "n.", "ipa": "/bɜːst/", "en": "a sudden break", "zh": "破裂；爆发"}, {"w": "business", "cat": "things_general", "pos": "n.", "ipa": "/ˈbɪznəs/", "en": "trade; affair", "zh": "生意；事务"}, {"w": "butter", "cat": "things_general", "pos": "n.", "ipa": "/ˈbʌtə/", "en": "yellow fat from milk", "zh": "黄油"}, {"w": "canvas", "cat": "things_general", "pos": "n.", "ipa": "/ˈkænvəs/", "en": "strong cloth", "zh": "帆布"}, {"w": "care", "cat": "things_general", "pos": "n.", "ipa": "/keə/", "en": "watchful attention", "zh": "关心；照料"}, {"w": "cause", "cat": "things_general", "pos": "n.", "ipa": "/kɔːz/", "en": "what makes a thing happen", "zh": "原因；事业"}, {"w": "chalk", "cat": "things_general", "pos": "n.", "ipa": "/tʃɔːk/", "en": "white soft stone", "zh": "粉笔；白垩"}, {"w": "chance", "cat": "things_general", "pos": "n.", "ipa": "/tʃɑːns/", "en": "possibility; luck", "zh": "机会；运气"}, {"w": "change", "cat": "things_general", "pos": "n.", "ipa": "/tʃeɪndʒ/", "en": "making different; money back", "zh": "改变；零钱"}, {"w": "cloth", "cat": "things_general", "pos": "n.", "ipa": "/klɒθ/", "en": "woven material", "zh": "布料"}, {"w": "coal", "cat": "things_general", "pos": "n.", "ipa": "/kəʊl/", "en": "black fuel from earth", "zh": "煤"}, {"w": "color", "cat": "things_general", "pos": "n.", "ipa": "/ˈkʌlə/", "en": "visual quality", "zh": "颜色"}, {"w": "comfort", "cat": "things_general", "pos": "n.", "ipa": "/ˈkʌmfət/", "en": "ease; relief", "zh": "舒适；安慰"}, {"w": "committee", "cat": "things_general", "pos": "n.", "ipa": "/kəˈmɪti/", "en": "a group chosen to decide", "zh": "委员会"}, {"w": "company", "cat": "things_general", "pos": "n.", "ipa": "/ˈkʌmpəni/", "en": "a business; companionship", "zh": "公司；陪伴"}, {"w": "comparison", "cat": "things_general", "pos": "n.", "ipa": "/kəmˈpærɪsn/", "en": "act of comparing", "zh": "比较"}, {"w": "competition", "cat": "things_general", "pos": "n.", "ipa": "/ˌkɒmpəˈtɪʃn/", "en": "rivalry; contest", "zh": "竞争；比赛"}, {"w": "condition", "cat": "things_general", "pos": "n.", "ipa": "/kənˈdɪʃn/", "en": "state of being", "zh": "条件；状况"}, {"w": "connection", "cat": "things_general", "pos": "n.", "ipa": "/kəˈnekʃn/", "en": "joining; link", "zh": "连接；关系"}, {"w": "control", "cat": "things_general", "pos": "n.", "ipa": "/kənˈtrəʊl/", "en": "power to direct", "zh": "控制；管理"}, {"w": "cook", "cat": "things_general", "pos": "n.", "ipa": "/kʊk/", "en": "one who prepares food", "zh": "厨师"}, {"w": "copper", "cat": "things_general", "pos": "n.", "ipa": "/ˈkɒpə/", "en": "reddish metal", "zh": "铜"}, {"w": "copy", "cat": "things_general", "pos": "n.", "ipa": "/ˈkɒpi/", "en": "a thing made like another", "zh": "副本；一本"}, {"w": "cork", "cat": "things_general", "pos": "n.", "ipa": "/kɔːk/", "en": "bottle stopper; bark", "zh": "软木塞"}, {"w": "cotton", "cat": "things_general", "pos": "n.", "ipa": "/ˈkɒtn/", "en": "soft plant fiber", "zh": "棉花"}, {"w": "cough", "cat": "things_general", "pos": "n.", "ipa": "/kɒf/", "en": "act of coughing", "zh": "咳嗽"}, {"w": "country", "cat": "things_general", "pos": "n.", "ipa": "/ˈkʌntri/", "en": "a nation; rural land", "zh": "国家；乡村"}, {"w": "cover", "cat": "things_general", "pos": "n.", "ipa": "/ˈkʌvə/", "en": "thing that goes over", "zh": "覆盖物；封面"}, {"w": "crack", "cat": "things_general", "pos": "n.", "ipa": "/kræk/", "en": "a narrow split", "zh": "裂缝；噼啪声"}, {"w": "credit", "cat": "things_general", "pos": "n.", "ipa": "/ˈkredɪt/", "en": "trust; delayed payment", "zh": "信用；赊欠"}, {"w": "crime", "cat": "things_general", "pos": "n.", "ipa": "/kraɪm/", "en": "a serious offense", "zh": "罪行；犯罪"}, {"w": "crush", "cat": "things_general", "pos": "n.", "ipa": "/krʌʃ/", "en": "a pressing; crowd", "zh": "压碎；拥挤"}, {"w": "cry", "cat": "things_general", "pos": "n.", "ipa": "/kraɪ/", "en": "a shout; tears", "zh": "哭声；喊叫"}, {"w": "current", "cat": "things_general", "pos": "n.", "ipa": "/ˈkʌrənt/", "en": "flow; present time", "zh": "水流；电流；当前"}, {"w": "curve", "cat": "things_general", "pos": "n.", "ipa": "/kɜːv/", "en": "a bending line", "zh": "曲线；弯曲"}, {"w": "damage", "cat": "things_general", "pos": "n.", "ipa": "/ˈdæmɪdʒ/", "en": "harm; loss", "zh": "损害；损失"}, {"w": "danger", "cat": "things_general", "pos": "n.", "ipa": "/ˈdeɪndʒə/", "en": "peril", "zh": "危险"}, {"w": "daughter", "cat": "things_general", "pos": "n.", "ipa": "/ˈdɔːtə/", "en": "female child", "zh": "女儿"}, {"w": "day", "cat": "things_general", "pos": "n.", "ipa": "/deɪ/", "en": "24 hours; daylight", "zh": "一天；白天"}, {"w": "death", "cat": "things_general", "pos": "n.", "ipa": "/deθ/", "en": "end of life", "zh": "死亡"}, {"w": "debt", "cat": "things_general", "pos": "n.", "ipa": "/det/", "en": "money owed", "zh": "债务"}, {"w": "decision", "cat": "things_general", "pos": "n.", "ipa": "/dɪˈsɪʒn/", "en": "a judgement; choice", "zh": "决定；决断"}, {"w": "degree", "cat": "things_general", "pos": "n.", "ipa": "/dɪˈɡriː/", "en": "a step; unit of measure", "zh": "程度；学位；度"}, {"w": "design", "cat": "things_general", "pos": "n.", "ipa": "/dɪˈzaɪn/", "en": "a plan; pattern", "zh": "设计；图案"}, {"w": "desire", "cat": "things_general", "pos": "n.", "ipa": "/dɪˈzaɪə/", "en": "strong wish", "zh": "欲望；渴望"}, {"w": "destruction", "cat": "things_general", "pos": "n.", "ipa": "/dɪˈstrʌkʃn/", "en": "the act of destroying", "zh": "破坏；毁灭"}, {"w": "detail", "cat": "things_general", "pos": "n.", "ipa": "/ˈdiːteɪl/", "en": "small part; full account", "zh": "细节；详情"}, {"w": "development", "cat": "things_general", "pos": "n.", "ipa": "/dɪˈveləpmənt/", "en": "growth; evolution", "zh": "发展；开发"}, {"w": "digestion", "cat": "things_general", "pos": "n.", "ipa": "/daɪˈdʒestʃən/", "en": "process in body", "zh": "消化"}, {"w": "direction", "cat": "things_general", "pos": "n.", "ipa": "/dəˈrekʃn/", "en": "way; management", "zh": "方向；指导"}, {"w": "discovery", "cat": "things_general", "pos": "n.", "ipa": "/dɪˈskʌvəri/", "en": "act of finding", "zh": "发现"}, {"w": "discussion", "cat": "things_general", "pos": "n.", "ipa": "/dɪˈskʌʃn/", "en": "talk about; debate", "zh": "讨论"}, {"w": "disease", "cat": "things_general", "pos": "n.", "ipa": "/dɪˈziːz/", "en": "illness", "zh": "疾病"}, {"w": "disgust", "cat": "things_general", "pos": "n.", "ipa": "/dɪsˈɡʌst/", "en": "strong dislike", "zh": "厌恶"}, {"w": "distance", "cat": "things_general", "pos": "n.", "ipa": "/ˈdɪstəns/", "en": "space between", "zh": "距离"}, {"w": "distribution", "cat": "things_general", "pos": "n.", "ipa": "/ˌdɪstrɪˈbjuːʃn/", "en": "giving out", "zh": "分发；分布"}, {"w": "division", "cat": "things_general", "pos": "n.", "ipa": "/dɪˈvɪʒn/", "en": "separation; part", "zh": "划分；部门"}, {"w": "doubt", "cat": "things_general", "pos": "n.", "ipa": "/daʊt/", "en": "uncertainty", "zh": "怀疑"}, {"w": "drink", "cat": "things_general", "pos": "n.", "ipa": "/drɪŋk/", "en": "liquid for swallowing", "zh": "饮料"}, {"w": "driving", "cat": "things_general", "pos": "n.", "ipa": "/ˈdraɪvɪŋ/", "en": "steering a vehicle", "zh": "驾驶"}, {"w": "dust", "cat": "things_general", "pos": "n.", "ipa": "/dʌst/", "en": "dry powder", "zh": "灰尘"}, {"w": "earth", "cat": "things_general", "pos": "n.", "ipa": "/ɜːθ/", "en": "the planet; soil", "zh": "地球；泥土"}, {"w": "edge", "cat": "things_general", "pos": "n.", "ipa": "/edʒ/", "en": "border; sharp side", "zh": "边缘；刀刃"}, {"w": "education", "cat": "things_general", "pos": "n.", "ipa": "/ˌedʒuˈkeɪʃn/", "en": "schooling", "zh": "教育"}, {"w": "effect", "cat": "things_general", "pos": "n.", "ipa": "/ɪˈfekt/", "en": "a result", "zh": "效果；影响"}, {"w": "end", "cat": "things_general", "pos": "n.", "ipa": "/end/", "en": "the last part; goal", "zh": "结尾；终点"}, {"w": "error", "cat": "things_general", "pos": "n.", "ipa": "/ˈerə/", "en": "a mistake", "zh": "错误"}, {"w": "event", "cat": "things_general", "pos": "n.", "ipa": "/ɪˈvent/", "en": "a happening", "zh": "事件"}, {"w": "example", "cat": "things_general", "pos": "n.", "ipa": "/ɪɡˈzɑːmpl/", "en": "a pattern; sample", "zh": "例子；榜样"}, {"w": "exchange", "cat": "things_general", "pos": "n.", "ipa": "/ɪksˈtʃeɪndʒ/", "en": "trading one for another", "zh": "交换；兑换"}, {"w": "existence", "cat": "things_general", "pos": "n.", "ipa": "/ɪɡˈzɪstəns/", "en": "the state of being", "zh": "存在；生存"}, {"w": "expansion", "cat": "things_general", "pos": "n.", "ipa": "/ɪkˈspænʃn/", "en": "the act of growing larger", "zh": "扩张；膨胀"}, {"w": "experience", "cat": "things_general", "pos": "n.", "ipa": "/ɪkˈspɪəriəns/", "en": "knowledge by trial", "zh": "经验；经历"}, {"w": "expert", "cat": "things_general", "pos": "n.", "ipa": "/ˈekspɜːt/", "en": "a person with skill", "zh": "专家"}, {"w": "fact", "cat": "things_general", "pos": "n.", "ipa": "/fækt/", "en": "a thing known to be true", "zh": "事实"}, {"w": "fall", "cat": "things_general", "pos": "n.", "ipa": "/fɔːl/", "en": "dropping; autumn", "zh": "落下；秋天"}, {"w": "family", "cat": "things_general", "pos": "n.", "ipa": "/ˈfæməli/", "en": "parents and children", "zh": "家庭"}, {"w": "father", "cat": "things_general", "pos": "n.", "ipa": "/ˈfɑːðə/", "en": "male parent", "zh": "父亲"}, {"w": "fear", "cat": "things_general", "pos": "n.", "ipa": "/fɪə/", "en": "feeling of alarm", "zh": "恐惧；担忧"}, {"w": "feeling", "cat": "things_general", "pos": "n.", "ipa": "/ˈfiːlɪŋ/", "en": "emotion; sensation", "zh": "感觉；感情"}, {"w": "fiction", "cat": "things_general", "pos": "n.", "ipa": "/ˈfɪkʃn/", "en": "made-up stories", "zh": "小说；虚构"}, {"w": "field", "cat": "things_general", "pos": "n.", "ipa": "/fiːld/", "en": "open land; area of study", "zh": "田野；领域"}, {"w": "fight", "cat": "things_general", "pos": "n.", "ipa": "/faɪt/", "en": "a battle", "zh": "战斗；打架"}, {"w": "fire", "cat": "things_general", "pos": "n.", "ipa": "/ˈfaɪə/", "en": "burning; flame", "zh": "火；火灾"}, {"w": "flame", "cat": "things_general", "pos": "n.", "ipa": "/fleɪm/", "en": "stream of burning gas", "zh": "火焰"}, {"w": "flight", "cat": "things_general", "pos": "n.", "ipa": "/flaɪt/", "en": "act of flying; trip by air", "zh": "飞行；航班"}, {"w": "flower", "cat": "things_general", "pos": "n.", "ipa": "/ˈflaʊə/", "en": "blossom of a plant", "zh": "花"}, {"w": "fold", "cat": "things_general", "pos": "n.", "ipa": "/fəʊld/", "en": "a bent part; a pen", "zh": "褶皱；羊栏"}, {"w": "food", "cat": "things_general", "pos": "n.", "ipa": "/fuːd/", "en": "what is eaten", "zh": "食物"}, {"w": "force", "cat": "things_general", "pos": "n.", "ipa": "/fɔːs/", "en": "strength; power", "zh": "力量；武力"}, {"w": "form", "cat": "things_general", "pos": "n.", "ipa": "/fɔːm/", "en": "shape; a paper to fill", "zh": "形式；表格"}, {"w": "friend", "cat": "things_general", "pos": "n.", "ipa": "/frend/", "en": "a person you like", "zh": "朋友"}, {"w": "front", "cat": "things_general", "pos": "n.", "ipa": "/frʌnt/", "en": "forward part; face", "zh": "前面；正面"}, {"w": "fruit", "cat": "things_general", "pos": "n.", "ipa": "/fruːt/", "en": "seed-bearing part of plant", "zh": "水果"}, {"w": "glass", "cat": "things_general", "pos": "n.", "ipa": "/ɡlɑːs/", "en": "transparent solid; mirror", "zh": "玻璃；玻璃杯"}, {"w": "gold", "cat": "things_general", "pos": "n.", "ipa": "/ɡəʊld/", "en": "yellow precious metal", "zh": "金"}, {"w": "government", "cat": "things_general", "pos": "n.", "ipa": "/ˈɡʌvnmənt/", "en": "ruling body", "zh": "政府"}, {"w": "grain", "cat": "things_general", "pos": "n.", "ipa": "/ɡreɪn/", "en": "seed of cereal; tiny bit", "zh": "谷物；颗粒"}, {"w": "grass", "cat": "things_general", "pos": "n.", "ipa": "/ɡrɑːs/", "en": "common green plant", "zh": "草"}, {"w": "grip", "cat": "things_general", "pos": "n.", "ipa": "/ɡrɪp/", "en": "a firm hold", "zh": "握紧；掌握"}, {"w": "group", "cat": "things_general", "pos": "n.", "ipa": "/ɡruːp/", "en": "a number together", "zh": "组；群"}, {"w": "growth", "cat": "things_general", "pos": "n.", "ipa": "/ɡrəʊθ/", "en": "act of growing", "zh": "生长；增长"}, {"w": "guide", "cat": "things_general", "pos": "n.", "ipa": "/ɡaɪd/", "en": "one who shows the way", "zh": "向导；指南"}, {"w": "harbor", "cat": "things_general", "pos": "n.", "ipa": "/ˈhɑːbə/", "en": "place for ships", "zh": "港口"}, {"w": "harmony", "cat": "things_general", "pos": "n.", "ipa": "/ˈhɑːməni/", "en": "agreement in sound; peace", "zh": "和谐；和声"}, {"w": "hate", "cat": "things_general", "pos": "n.", "ipa": "/heɪt/", "en": "strong dislike", "zh": "仇恨；厌恶"}, {"w": "hearing", "cat": "things_general", "pos": "n.", "ipa": "/ˈhɪərɪŋ/", "en": "sense of sound; trial", "zh": "听觉；听证"}, {"w": "heat", "cat": "things_general", "pos": "n.", "ipa": "/hiːt/", "en": "warmth; high temperature", "zh": "热；高温"}, {"w": "help", "cat": "things_general", "pos": "n.", "ipa": "/help/", "en": "act of aiding", "zh": "帮助"}, {"w": "history", "cat": "things_general", "pos": "n.", "ipa": "/ˈhɪstri/", "en": "past events; study of them", "zh": "历史"}, {"w": "hole", "cat": "things_general", "pos": "n.", "ipa": "/həʊl/", "en": "an opening; cavity", "zh": "洞；孔"}, {"w": "hope", "cat": "things_general", "pos": "n.", "ipa": "/həʊp/", "en": "expectation of good", "zh": "希望"}, {"w": "hour", "cat": "things_general", "pos": "n.", "ipa": "/ˈaʊə/", "en": "60 minutes", "zh": "小时"}, {"w": "humor", "cat": "things_general", "pos": "n.", "ipa": "/ˈhjuːmə/", "en": "funny quality; mood", "zh": "幽默；心情"}, {"w": "ice", "cat": "things_general", "pos": "n.", "ipa": "/aɪs/", "en": "frozen water", "zh": "冰"}, {"w": "idea", "cat": "things_general", "pos": "n.", "ipa": "/aɪˈdɪə/", "en": "a thought; plan", "zh": "主意；想法"}, {"w": "impulse", "cat": "things_general", "pos": "n.", "ipa": "/ˈɪmpʌls/", "en": "a sudden push; urge", "zh": "冲动；推动"}, {"w": "increase", "cat": "things_general", "pos": "n.", "ipa": "/ˈɪnkriːs/", "en": "growth in amount", "zh": "增加；增长"}, {"w": "industry", "cat": "things_general", "pos": "n.", "ipa": "/ˈɪndəstri/", "en": "manufacturing; hard work", "zh": "工业；勤勉"}, {"w": "ink", "cat": "things_general", "pos": "n.", "ipa": "/ɪŋk/", "en": "liquid for writing", "zh": "墨水"}, {"w": "insect", "cat": "things_general", "pos": "n.", "ipa": "/ˈɪnsekt/", "en": "small six-legged creature", "zh": "昆虫"}, {"w": "instrument", "cat": "things_general", "pos": "n.", "ipa": "/ˈɪnstrəmənt/", "en": "a tool; a musical device", "zh": "工具；乐器"}, {"w": "insurance", "cat": "things_general", "pos": "n.", "ipa": "/ɪnˈʃʊərəns/", "en": "protection by payment", "zh": "保险"}, {"w": "interest", "cat": "things_general", "pos": "n.", "ipa": "/ˈɪntrəst/", "en": "curiosity; money for loans", "zh": "兴趣；利息"}, {"w": "invention", "cat": "things_general", "pos": "n.", "ipa": "/ɪnˈvenʃn/", "en": "a thing first made", "zh": "发明"}, {"w": "iron", "cat": "things_general", "pos": "n.", "ipa": "/ˈaɪən/", "en": "common gray metal", "zh": "铁"}, {"w": "jelly", "cat": "things_general", "pos": "n.", "ipa": "/ˈdʒeli/", "en": "soft sweet food", "zh": "果冻"}, {"w": "join", "cat": "things_general", "pos": "n.", "ipa": "/dʒɔɪn/", "en": "place where things meet", "zh": "连接处"}, {"w": "journey", "cat": "things_general", "pos": "n.", "ipa": "/ˈdʒɜːni/", "en": "a trip", "zh": "旅行；旅程"}, {"w": "judge", "cat": "things_general", "pos": "n.", "ipa": "/dʒʌdʒ/", "en": "one who decides in court", "zh": "法官；裁判"}, {"w": "jump", "cat": "things_general", "pos": "n.", "ipa": "/dʒʌmp/", "en": "a spring into the air", "zh": "跳跃"}, {"w": "kick", "cat": "things_general", "pos": "n.", "ipa": "/kɪk/", "en": "blow with the foot", "zh": "踢"}, {"w": "kiss", "cat": "things_general", "pos": "n.", "ipa": "/kɪs/", "en": "touch with the lips", "zh": "吻"}, {"w": "knowledge", "cat": "things_general", "pos": "n.", "ipa": "/ˈnɒlɪdʒ/", "en": "what is known", "zh": "知识"}, {"w": "land", "cat": "things_general", "pos": "n.", "ipa": "/lænd/", "en": "solid ground; country", "zh": "陆地；土地"}, {"w": "language", "cat": "things_general", "pos": "n.", "ipa": "/ˈlæŋɡwɪdʒ/", "en": "human speech", "zh": "语言"}, {"w": "laugh", "cat": "things_general", "pos": "n.", "ipa": "/lɑːf/", "en": "sound of joy", "zh": "笑；笑声"}, {"w": "law", "cat": "things_general", "pos": "n.", "ipa": "/lɔː/", "en": "a rule made by authority", "zh": "法律；法则"}, {"w": "lead", "cat": "things_general", "pos": "n.", "ipa": "/led/", "en": "heavy gray metal", "zh": "铅"}, {"w": "learning", "cat": "things_general", "pos": "n.", "ipa": "/ˈlɜːnɪŋ/", "en": "knowledge gained", "zh": "学习；学问"}, {"w": "leather", "cat": "things_general", "pos": "n.", "ipa": "/ˈleðə/", "en": "tanned animal skin", "zh": "皮革"}, {"w": "letter", "cat": "things_general", "pos": "n.", "ipa": "/ˈletə/", "en": "a written message; abc", "zh": "信；字母"}, {"w": "level", "cat": "things_general", "pos": "n.", "ipa": "/ˈlevl/", "en": "a flat surface; rank", "zh": "水平；等级"}, {"w": "lift", "cat": "things_general", "pos": "n.", "ipa": "/lɪft/", "en": "an elevator; act of raising", "zh": "电梯；举起"}, {"w": "light", "cat": "things_general", "pos": "n.", "ipa": "/laɪt/", "en": "brightness; a lamp", "zh": "光；灯"}, {"w": "limit", "cat": "things_general", "pos": "n.", "ipa": "/ˈlɪmɪt/", "en": "the edge of allowed", "zh": "限制；界限"}, {"w": "linen", "cat": "things_general", "pos": "n.", "ipa": "/ˈlɪnɪn/", "en": "cloth from flax", "zh": "亚麻布"}, {"w": "liquid", "cat": "things_general", "pos": "n.", "ipa": "/ˈlɪkwɪd/", "en": "substance that flows", "zh": "液体"}, {"w": "list", "cat": "things_general", "pos": "n.", "ipa": "/lɪst/", "en": "names written in order", "zh": "名单；列表"}, {"w": "look", "cat": "things_general", "pos": "n.", "ipa": "/lʊk/", "en": "act of seeing; appearance", "zh": "看；样子"}, {"w": "loss", "cat": "things_general", "pos": "n.", "ipa": "/lɒs/", "en": "the act of losing", "zh": "损失；丧失"}, {"w": "love", "cat": "things_general", "pos": "n.", "ipa": "/lʌv/", "en": "warm affection", "zh": "爱"}, {"w": "machine", "cat": "things_general", "pos": "n.", "ipa": "/məˈʃiːn/", "en": "a device with parts", "zh": "机器"}, {"w": "man", "cat": "things_general", "pos": "n.", "ipa": "/mæn/", "en": "adult male; human", "zh": "男人；人"}, {"w": "manager", "cat": "things_general", "pos": "n.", "ipa": "/ˈmænɪdʒə/", "en": "one who directs", "zh": "经理"}, {"w": "mark", "cat": "things_general", "pos": "n.", "ipa": "/mɑːk/", "en": "a visible sign; target", "zh": "标记；目标"}, {"w": "market", "cat": "things_general", "pos": "n.", "ipa": "/ˈmɑːkɪt/", "en": "place for selling", "zh": "市场"}, {"w": "mass", "cat": "things_general", "pos": "n.", "ipa": "/mæs/", "en": "a heap; body of matter", "zh": "质量；一堆"}, {"w": "meal", "cat": "things_general", "pos": "n.", "ipa": "/miːl/", "en": "food eaten at a time", "zh": "一餐"}, {"w": "measure", "cat": "things_general", "pos": "n.", "ipa": "/ˈmeʒə/", "en": "a standard of size", "zh": "量度；措施"}, {"w": "meat", "cat": "things_general", "pos": "n.", "ipa": "/miːt/", "en": "animal flesh eaten", "zh": "肉"}, {"w": "meeting", "cat": "things_general", "pos": "n.", "ipa": "/ˈmiːtɪŋ/", "en": "a gathering", "zh": "会议"}, {"w": "memory", "cat": "things_general", "pos": "n.", "ipa": "/ˈmeməri/", "en": "the power to remember", "zh": "记忆"}, {"w": "metal", "cat": "things_general", "pos": "n.", "ipa": "/ˈmetl/", "en": "solid mineral substance", "zh": "金属"}, {"w": "middle", "cat": "things_general", "pos": "n.", "ipa": "/ˈmɪdl/", "en": "the center", "zh": "中间"}, {"w": "milk", "cat": "things_general", "pos": "n.", "ipa": "/mɪlk/", "en": "white liquid from animals", "zh": "牛奶"}, {"w": "mind", "cat": "things_general", "pos": "n.", "ipa": "/maɪnd/", "en": "the thinking part", "zh": "头脑；心思"}, {"w": "mine", "cat": "things_general", "pos": "n.", "ipa": "/maɪn/", "en": "a pit for minerals", "zh": "矿"}, {"w": "minute", "cat": "things_general", "pos": "n.", "ipa": "/ˈmɪnɪt/", "en": "60 seconds", "zh": "分钟"}, {"w": "mist", "cat": "things_general", "pos": "n.", "ipa": "/mɪst/", "en": "thin fog; fine spray", "zh": "薄雾"}, {"w": "money", "cat": "things_general", "pos": "n.", "ipa": "/ˈmʌni/", "en": "coins and notes", "zh": "钱"}, {"w": "month", "cat": "things_general", "pos": "n.", "ipa": "/mʌnθ/", "en": "about 30 days", "zh": "月；月份"}, {"w": "morning", "cat": "things_general", "pos": "n.", "ipa": "/ˈmɔːnɪŋ/", "en": "first part of day", "zh": "早晨"}, {"w": "mother", "cat": "things_general", "pos": "n.", "ipa": "/ˈmʌðə/", "en": "female parent", "zh": "母亲"}, {"w": "motion", "cat": "things_general", "pos": "n.", "ipa": "/ˈməʊʃn/", "en": "act of moving", "zh": "运动；动作"}, {"w": "mountain", "cat": "things_general", "pos": "n.", "ipa": "/ˈmaʊntən/", "en": "a very high hill", "zh": "山"}, {"w": "move", "cat": "things_general", "pos": "n.", "ipa": "/muːv/", "en": "a change of place", "zh": "移动；一步"}, {"w": "music", "cat": "things_general", "pos": "n.", "ipa": "/ˈmjuːzɪk/", "en": "art of pleasing sounds", "zh": "音乐"}, {"w": "name", "cat": "things_general", "pos": "n.", "ipa": "/neɪm/", "en": "what a thing is called", "zh": "名字"}, {"w": "nation", "cat": "things_general", "pos": "n.", "ipa": "/ˈneɪʃn/", "en": "a country; a people", "zh": "国家；民族"}, {"w": "need", "cat": "things_general", "pos": "n.", "ipa": "/niːd/", "en": "a thing wanted; lack", "zh": "需要"}, {"w": "news", "cat": "things_general", "pos": "n.", "ipa": "/njuːz/", "en": "fresh information", "zh": "新闻；消息"}, {"w": "night", "cat": "things_general", "pos": "n.", "ipa": "/naɪt/", "en": "hours of darkness", "zh": "夜晚"}, {"w": "noise", "cat": "things_general", "pos": "n.", "ipa": "/nɔɪz/", "en": "a loud sound", "zh": "噪音"}, {"w": "note", "cat": "things_general", "pos": "n.", "ipa": "/nəʊt/", "en": "a short record; a sound", "zh": "笔记；音符"}, {"w": "number", "cat": "things_general", "pos": "n.", "ipa": "/ˈnʌmbə/", "en": "a count; a figure", "zh": "数字；号码"}, {"w": "observation", "cat": "things_general", "pos": "n.", "ipa": "/ˌɒbzəˈveɪʃn/", "en": "act of watching", "zh": "观察"}, {"w": "offer", "cat": "things_general", "pos": "n.", "ipa": "/ˈɒfə/", "en": "a thing offered", "zh": "提供；提议"}, {"w": "oil", "cat": "things_general", "pos": "n.", "ipa": "/ɔɪl/", "en": "liquid fat; petroleum", "zh": "油"}, {"w": "operation", "cat": "things_general", "pos": "n.", "ipa": "/ˌɒpəˈreɪʃn/", "en": "a working; a surgery", "zh": "操作；手术"}, {"w": "opinion", "cat": "things_general", "pos": "n.", "ipa": "/əˈpɪnjən/", "en": "what one thinks", "zh": "意见；看法"}, {"w": "order", "cat": "things_general", "pos": "n.", "ipa": "/ˈɔːdə/", "en": "a command; sequence", "zh": "命令；顺序"}, {"w": "organization", "cat": "things_general", "pos": "n.", "ipa": "/ˌɔːɡənaɪˈzeɪʃn/", "en": "an organized body", "zh": "组织；机构"}, {"w": "ornament", "cat": "things_general", "pos": "n.", "ipa": "/ˈɔːnəmənt/", "en": "a decoration", "zh": "装饰品"}, {"w": "owner", "cat": "things_general", "pos": "n.", "ipa": "/ˈəʊnə/", "en": "one who possesses", "zh": "所有者"}, {"w": "page", "cat": "things_general", "pos": "n.", "ipa": "/peɪdʒ/", "en": "one side of a leaf", "zh": "页"}, {"w": "pain", "cat": "things_general", "pos": "n.", "ipa": "/peɪn/", "en": "suffering; ache", "zh": "疼痛"}, {"w": "paint", "cat": "things_general", "pos": "n.", "ipa": "/peɪnt/", "en": "colored liquid; coating", "zh": "油漆；颜料"}, {"w": "paper", "cat": "things_general", "pos": "n.", "ipa": "/ˈpeɪpə/", "en": "material for writing", "zh": "纸；报纸"}, {"w": "part", "cat": "things_general", "pos": "n.", "ipa": "/pɑːt/", "en": "a piece of a whole", "zh": "部分"}, {"w": "paste", "cat": "things_general", "pos": "n.", "ipa": "/peɪst/", "en": "a soft sticky mass", "zh": "糊；浆糊"}, {"w": "payment", "cat": "things_general", "pos": "n.", "ipa": "/ˈpeɪmənt/", "en": "an amount paid", "zh": "支付；付款"}, {"w": "peace", "cat": "things_general", "pos": "n.", "ipa": "/piːs/", "en": "calm; absence of war", "zh": "和平；平静"}, {"w": "person", "cat": "things_general", "pos": "n.", "ipa": "/ˈpɜːsn/", "en": "an individual human", "zh": "人"}, {"w": "place", "cat": "things_general", "pos": "n.", "ipa": "/pleɪs/", "en": "a position; a spot", "zh": "地方；位置"}, {"w": "plant", "cat": "things_general", "pos": "n.", "ipa": "/plɑːnt/", "en": "living thing; factory", "zh": "植物；工厂"}, {"w": "play", "cat": "things_general", "pos": "n.", "ipa": "/pleɪ/", "en": "a game; a drama", "zh": "游戏；剧本"}, {"w": "pleasure", "cat": "things_general", "pos": "n.", "ipa": "/ˈpleʒə/", "en": "enjoyment", "zh": "快乐；乐意"}, {"w": "point", "cat": "things_general", "pos": "n.", "ipa": "/pɔɪnt/", "en": "a sharp end; an idea", "zh": "点；要点"}, {"w": "poison", "cat": "things_general", "pos": "n.", "ipa": "/ˈpɔɪzn/", "en": "substance that harms", "zh": "毒药"}, {"w": "polish", "cat": "things_general", "pos": "n.", "ipa": "/ˈpɒlɪʃ/", "en": "smoothness; a waxy substance", "zh": "擦亮剂"}, {"w": "porter", "cat": "things_general", "pos": "n.", "ipa": "/ˈpɔːtə/", "en": "one who carries loads", "zh": "搬运工"}, {"w": "position", "cat": "things_general", "pos": "n.", "ipa": "/pəˈzɪʃn/", "en": "a place; a job", "zh": "位置；职位"}, {"w": "powder", "cat": "things_general", "pos": "n.", "ipa": "/ˈpaʊdə/", "en": "fine dry dust", "zh": "粉末"}, {"w": "power", "cat": "things_general", "pos": "n.", "ipa": "/ˈpaʊə/", "en": "ability; energy", "zh": "力量；电力"}, {"w": "price", "cat": "things_general", "pos": "n.", "ipa": "/praɪs/", "en": "what is paid", "zh": "价格"}, {"w": "print", "cat": "things_general", "pos": "n.", "ipa": "/prɪnt/", "en": "marks from type; fabric", "zh": "印刷；印花布"}, {"w": "process", "cat": "things_general", "pos": "n.", "ipa": "/ˈprəʊses/", "en": "series of actions", "zh": "过程；工序"}, {"w": "produce", "cat": "things_general", "pos": "n.", "ipa": "/ˈprɒdjuːs/", "en": "farm products", "zh": "农产品"}, {"w": "profit", "cat": "things_general", "pos": "n.", "ipa": "/ˈprɒfɪt/", "en": "money gained", "zh": "利润"}, {"w": "property", "cat": "things_general", "pos": "n.", "ipa": "/ˈprɒpəti/", "en": "what one owns; a quality", "zh": "财产；性质"}, {"w": "prose", "cat": "things_general", "pos": "n.", "ipa": "/prəʊz/", "en": "ordinary writing", "zh": "散文"}, {"w": "protest", "cat": "things_general", "pos": "n.", "ipa": "/ˈprəʊtest/", "en": "statement of dissent", "zh": "抗议"}, {"w": "pull", "cat": "things_general", "pos": "n.", "ipa": "/pʊl/", "en": "act of drawing", "zh": "拉；拉力"}, {"w": "punishment", "cat": "things_general", "pos": "n.", "ipa": "/ˈpʌnɪʃmənt/", "en": "a pain for wrong", "zh": "惩罚"}, {"w": "purpose", "cat": "things_general", "pos": "n.", "ipa": "/ˈpɜːpəs/", "en": "an aim", "zh": "目的；意图"}, {"w": "push", "cat": "things_general", "pos": "n.", "ipa": "/pʊʃ/", "en": "act of pressing", "zh": "推；推进"}, {"w": "quality", "cat": "things_general", "pos": "n.", "ipa": "/ˈkwɒləti/", "en": "a property; excellence", "zh": "品质；质量"}, {"w": "question", "cat": "things_general", "pos": "n.", "ipa": "/ˈkwestʃən/", "en": "an inquiry", "zh": "问题"}, {"w": "rain", "cat": "things_general", "pos": "n.", "ipa": "/reɪn/", "en": "water from clouds", "zh": "雨"}, {"w": "range", "cat": "things_general", "pos": "n.", "ipa": "/reɪndʒ/", "en": "a row; an extent", "zh": "范围；山脉"}, {"w": "rate", "cat": "things_general", "pos": "n.", "ipa": "/reɪt/", "en": "a measure; a price", "zh": "率；速率"}, {"w": "ray", "cat": "things_general", "pos": "n.", "ipa": "/reɪ/", "en": "a line of light", "zh": "光线"}, {"w": "reaction", "cat": "things_general", "pos": "n.", "ipa": "/riˈækʃn/", "en": "response to an act", "zh": "反应"}, {"w": "reading", "cat": "things_general", "pos": "n.", "ipa": "/ˈriːdɪŋ/", "en": "act of reading; a text", "zh": "阅读；读物"}, {"w": "reason", "cat": "things_general", "pos": "n.", "ipa": "/ˈriːzn/", "en": "cause; good sense", "zh": "原因；理智"}, {"w": "record", "cat": "things_general", "pos": "n.", "ipa": "/ˈrekɔːd/", "en": "a written account; best mark", "zh": "记录；唱片"}, {"w": "regret", "cat": "things_general", "pos": "n.", "ipa": "/rɪˈɡret/", "en": "sorrow for a past act", "zh": "懊悔"}, {"w": "relation", "cat": "things_general", "pos": "n.", "ipa": "/rɪˈleɪʃn/", "en": "a connection; a relative", "zh": "关系；亲属"}, {"w": "religion", "cat": "things_general", "pos": "n.", "ipa": "/rɪˈlɪdʒən/", "en": "belief in a god", "zh": "宗教"}, {"w": "representative", "cat": "things_general", "pos": "n.", "ipa": "/ˌreprɪˈzentətɪv/", "en": "one who stands for others", "zh": "代表"}, {"w": "request", "cat": "things_general", "pos": "n.", "ipa": "/rɪˈkwest/", "en": "an asking", "zh": "请求"}, {"w": "respect", "cat": "things_general", "pos": "n.", "ipa": "/rɪˈspekt/", "en": "esteem; regard", "zh": "尊重；敬意"}, {"w": "rest", "cat": "things_general", "pos": "n.", "ipa": "/rest/", "en": "ease; sleep; the remainder", "zh": "休息；其余"}, {"w": "reward", "cat": "things_general", "pos": "n.", "ipa": "/rɪˈwɔːd/", "en": "a return for service", "zh": "奖赏"}, {"w": "rhythm", "cat": "things_general", "pos": "n.", "ipa": "/ˈrɪðəm/", "en": "regular beat", "zh": "节奏；韵律"}, {"w": "rice", "cat": "things_general", "pos": "n.", "ipa": "/raɪs/", "en": "common white grain food", "zh": "稻米"}, {"w": "river", "cat": "things_general", "pos": "n.", "ipa": "/ˈrɪvə/", "en": "a large stream of water", "zh": "河流"}, {"w": "road", "cat": "things_general", "pos": "n.", "ipa": "/rəʊd/", "en": "a way for travel", "zh": "路；道路"}, {"w": "roll", "cat": "things_general", "pos": "n.", "ipa": "/rəʊl/", "en": "a small round bread; coil", "zh": "面包卷；卷"}, {"w": "room", "cat": "things_general", "pos": "n.", "ipa": "/ruːm/", "en": "a part of a house; space", "zh": "房间；空间"}, {"w": "rub", "cat": "things_general", "pos": "n.", "ipa": "/rʌb/", "en": "act of friction", "zh": "摩擦"}, {"w": "rule", "cat": "things_general", "pos": "n.", "ipa": "/ruːl/", "en": "a law; a measuring strip", "zh": "规则；尺"}, {"w": "run", "cat": "things_general", "pos": "n.", "ipa": "/rʌn/", "en": "an act of running; a series", "zh": "跑；连续"}, {"w": "salt", "cat": "things_general", "pos": "n.", "ipa": "/sɔːlt/", "en": "white substance for taste", "zh": "盐"}, {"w": "sand", "cat": "things_general", "pos": "n.", "ipa": "/sænd/", "en": "fine grains of rock", "zh": "沙"}, {"w": "scale", "cat": "things_general", "pos": "n.", "ipa": "/skeɪl/", "en": "a weighing tool; a series", "zh": "天平；比例"}, {"w": "science", "cat": "things_general", "pos": "n.", "ipa": "/ˈsaɪəns/", "en": "knowledge by study", "zh": "科学"}, {"w": "sea", "cat": "things_general", "pos": "n.", "ipa": "/siː/", "en": "the great body of salt water", "zh": "海"}, {"w": "seat", "cat": "things_general", "pos": "n.", "ipa": "/siːt/", "en": "a place to sit", "zh": "座位"}, {"w": "secretary", "cat": "things_general", "pos": "n.", "ipa": "/ˈsekrətri/", "en": "one who writes letters", "zh": "秘书"}, {"w": "selection", "cat": "things_general", "pos": "n.", "ipa": "/sɪˈlekʃn/", "en": "act of choosing", "zh": "选择"}, {"w": "self", "cat": "things_general", "pos": "n.", "ipa": "/self/", "en": "one's own person", "zh": "自我"}, {"w": "sense", "cat": "things_general", "pos": "n.", "ipa": "/sens/", "en": "a power of the mind", "zh": "感觉；理智"}, {"w": "servant", "cat": "things_general", "pos": "n.", "ipa": "/ˈsɜːvənt/", "en": "one who serves", "zh": "仆人"}, {"w": "sex", "cat": "things_general", "pos": "n.", "ipa": "/seks/", "en": "being male or female", "zh": "性别"}, {"w": "shade", "cat": "things_general", "pos": "n.", "ipa": "/ʃeɪd/", "en": "shadow; a color degree", "zh": "阴凉处；色度"}, {"w": "shake", "cat": "things_general", "pos": "n.", "ipa": "/ʃeɪk/", "en": "a quick movement", "zh": "摇动；颤抖"}, {"w": "shame", "cat": "things_general", "pos": "n.", "ipa": "/ʃeɪm/", "en": "painful feeling for wrong", "zh": "羞耻；遗憾"}, {"w": "shock", "cat": "things_general", "pos": "n.", "ipa": "/ʃɒk/", "en": "a sudden surprise; a blow", "zh": "震惊；电击"}, {"w": "side", "cat": "things_general", "pos": "n.", "ipa": "/saɪd/", "en": "an edge; a party", "zh": "边；一方"}, {"w": "sign", "cat": "things_general", "pos": "n.", "ipa": "/saɪn/", "en": "a mark; an omen", "zh": "记号；迹象"}, {"w": "silk", "cat": "things_general", "pos": "n.", "ipa": "/sɪlk/", "en": "fine thread from worms", "zh": "丝绸"}, {"w": "silver", "cat": "things_general", "pos": "n.", "ipa": "/ˈsɪlvə/", "en": "white precious metal", "zh": "银"}, {"w": "sister", "cat": "things_general", "pos": "n.", "ipa": "/ˈsɪstə/", "en": "female relative", "zh": "姐妹"}, {"w": "size", "cat": "things_general", "pos": "n.", "ipa": "/saɪz/", "en": "how big a thing is", "zh": "尺寸"}, {"w": "sky", "cat": "things_general", "pos": "n.", "ipa": "/skaɪ/", "en": "the space above earth", "zh": "天空"}, {"w": "sleep", "cat": "things_general", "pos": "n.", "ipa": "/sliːp/", "en": "natural rest", "zh": "睡眠"}, {"w": "slip", "cat": "things_general", "pos": "n.", "ipa": "/slɪp/", "en": "a slide; a small mistake", "zh": "滑倒；疏忽"}, {"w": "slope", "cat": "things_general", "pos": "n.", "ipa": "/sləʊp/", "en": "a slanting surface", "zh": "斜坡"}, {"w": "smash", "cat": "things_general", "pos": "n.", "ipa": "/smæʃ/", "en": "a hard blow", "zh": "破碎；猛击"}, {"w": "smell", "cat": "things_general", "pos": "n.", "ipa": "/smel/", "en": "the sense of odor", "zh": "嗅觉；气味"}, {"w": "smile", "cat": "things_general", "pos": "n.", "ipa": "/smaɪl/", "en": "a pleased look", "zh": "微笑"}, {"w": "smoke", "cat": "things_general", "pos": "n.", "ipa": "/sməʊk/", "en": "visible vapor of fire", "zh": "烟"}, {"w": "sneeze", "cat": "things_general", "pos": "n.", "ipa": "/sniːz/", "en": "a sudden blast of air", "zh": "喷嚏"}, {"w": "snow", "cat": "things_general", "pos": "n.", "ipa": "/snəʊ/", "en": "frozen white rain", "zh": "雪"}, {"w": "soap", "cat": "things_general", "pos": "n.", "ipa": "/səʊp/", "en": "substance for washing", "zh": "肥皂"}, {"w": "society", "cat": "things_general", "pos": "n.", "ipa": "/səˈsaɪəti/", "en": "people together; a club", "zh": "社会；社团"}, {"w": "son", "cat": "things_general", "pos": "n.", "ipa": "/sʌn/", "en": "male child", "zh": "儿子"}, {"w": "song", "cat": "things_general", "pos": "n.", "ipa": "/sɒŋ/", "en": "a piece of music with words", "zh": "歌曲"}, {"w": "sort", "cat": "things_general", "pos": "n.", "ipa": "/sɔːt/", "en": "a kind; a class", "zh": "种类"}, {"w": "sound", "cat": "things_general", "pos": "n.", "ipa": "/saʊnd/", "en": "what is heard", "zh": "声音"}, {"w": "soup", "cat": "things_general", "pos": "n.", "ipa": "/suːp/", "en": "liquid cooked food", "zh": "汤"}, {"w": "space", "cat": "things_general", "pos": "n.", "ipa": "/speɪs/", "en": "room; the universe", "zh": "空间；太空"}, {"w": "stage", "cat": "things_general", "pos": "n.", "ipa": "/steɪdʒ/", "en": "a platform; a step", "zh": "舞台；阶段"}, {"w": "start", "cat": "things_general", "pos": "n.", "ipa": "/stɑːt/", "en": "a beginning; a jump", "zh": "开始"}, {"w": "statement", "cat": "things_general", "pos": "n.", "ipa": "/ˈsteɪtmənt/", "en": "a thing said", "zh": "声明；陈述"}, {"w": "steam", "cat": "things_general", "pos": "n.", "ipa": "/stiːm/", "en": "vapor of boiling water", "zh": "蒸汽"}, {"w": "steel", "cat": "things_general", "pos": "n.", "ipa": "/stiːl/", "en": "hard iron alloy", "zh": "钢"}, {"w": "step", "cat": "things_general", "pos": "n.", "ipa": "/step/", "en": "a pace; a stair", "zh": "步；台阶"}, {"w": "stitch", "cat": "things_general", "pos": "n.", "ipa": "/stɪtʃ/", "en": "a loop of thread", "zh": "一针；针脚"}, {"w": "stone", "cat": "things_general", "pos": "n.", "ipa": "/stəʊn/", "en": "a piece of rock", "zh": "石头"}, {"w": "stop", "cat": "things_general", "pos": "n.", "ipa": "/stɒp/", "en": "a halt; a place to stop", "zh": "停止；车站"}, {"w": "story", "cat": "things_general", "pos": "n.", "ipa": "/ˈstɔːri/", "en": "a tale; a floor of a house", "zh": "故事；楼层"}, {"w": "stretch", "cat": "things_general", "pos": "n.", "ipa": "/stretʃ/", "en": "an act of pulling out", "zh": "伸展；一段"}, {"w": "structure", "cat": "things_general", "pos": "n.", "ipa": "/ˈstrʌktʃə/", "en": "a building; a framework", "zh": "结构；建筑物"}, {"w": "substance", "cat": "things_general", "pos": "n.", "ipa": "/ˈsʌbstəns/", "en": "the material of a thing", "zh": "物质；实质"}, {"w": "sugar", "cat": "things_general", "pos": "n.", "ipa": "/ˈʃʊɡə/", "en": "sweet white food", "zh": "糖"}, {"w": "suggestion", "cat": "things_general", "pos": "n.", "ipa": "/səˈdʒestʃən/", "en": "an idea offered", "zh": "建议"}, {"w": "summer", "cat": "things_general", "pos": "n.", "ipa": "/ˈsʌmə/", "en": "the warm season", "zh": "夏天"}, {"w": "support", "cat": "things_general", "pos": "n.", "ipa": "/səˈpɔːt/", "en": "act of bearing up", "zh": "支持；支撑"}, {"w": "surprise", "cat": "things_general", "pos": "n.", "ipa": "/səˈpraɪz/", "en": "an unexpected event", "zh": "惊讶"}, {"w": "swim", "cat": "things_general", "pos": "n.", "ipa": "/swɪm/", "en": "act of moving in water", "zh": "游泳"}, {"w": "system", "cat": "things_general", "pos": "n.", "ipa": "/ˈsɪstəm/", "en": "an ordered set", "zh": "系统；制度"}, {"w": "talk", "cat": "things_general", "pos": "n.", "ipa": "/tɔːk/", "en": "conversation", "zh": "谈话"}, {"w": "taste", "cat": "things_general", "pos": "n.", "ipa": "/teɪst/", "en": "flavor; the sense", "zh": "味道；味觉"}, {"w": "tax", "cat": "things_general", "pos": "n.", "ipa": "/tæks/", "en": "money paid to government", "zh": "税"}, {"w": "teaching", "cat": "things_general", "pos": "n.", "ipa": "/ˈtiːtʃɪŋ/", "en": "instruction", "zh": "教学"}, {"w": "tendency", "cat": "things_general", "pos": "n.", "ipa": "/ˈtendənsi/", "en": "a leaning toward", "zh": "倾向；趋势"}, {"w": "test", "cat": "things_general", "pos": "n.", "ipa": "/test/", "en": "a trial; an examination", "zh": "试验；测试"}, {"w": "theory", "cat": "things_general", "pos": "n.", "ipa": "/ˈθɪəri/", "en": "an idea explaining facts", "zh": "理论"}, {"w": "thing", "cat": "things_general", "pos": "n.", "ipa": "/θɪŋ/", "en": "an object; an event", "zh": "事物；东西"}, {"w": "thought", "cat": "things_general", "pos": "n.", "ipa": "/θɔːt/", "en": "an idea; the act of thinking", "zh": "想法；思想"}, {"w": "thunder", "cat": "things_general", "pos": "n.", "ipa": "/ˈθʌndə/", "en": "a loud noise after lightning", "zh": "雷声"}, {"w": "time", "cat": "things_general", "pos": "n.", "ipa": "/taɪm/", "en": "hours and days; an era", "zh": "时间；次数"}, {"w": "tin", "cat": "things_general", "pos": "n.", "ipa": "/tɪn/", "en": "soft white metal; can", "zh": "锡；罐头"}, {"w": "top", "cat": "things_general", "pos": "n.", "ipa": "/tɒp/", "en": "the highest part", "zh": "顶部"}, {"w": "touch", "cat": "things_general", "pos": "n.", "ipa": "/tʌtʃ/", "en": "act of feeling; a small amount", "zh": "触；接触"}, {"w": "trade", "cat": "things_general", "pos": "n.", "ipa": "/treɪd/", "en": "buying and selling; a craft", "zh": "贸易；行业"}, {"w": "transport", "cat": "things_general", "pos": "n.", "ipa": "/ˈtrænspɔːt/", "en": "carrying from place to place", "zh": "运输"}, {"w": "trick", "cat": "things_general", "pos": "n.", "ipa": "/trɪk/", "en": "a clever act; a cheat", "zh": "诡计；窍门"}, {"w": "trouble", "cat": "things_general", "pos": "n.", "ipa": "/ˈtrʌbl/", "en": "worry; difficulty", "zh": "麻烦；困难"}, {"w": "turn", "cat": "things_general", "pos": "n.", "ipa": "/tɜːn/", "en": "a change of direction; a bend", "zh": "转动；轮流"}, {"w": "twist", "cat": "things_general", "pos": "n.", "ipa": "/twɪst/", "en": "a turning around", "zh": "扭转；捻"}, {"w": "unit", "cat": "things_general", "pos": "n.", "ipa": "/ˈjuːnɪt/", "en": "one whole; a standard", "zh": "单位；单元"}, {"w": "use", "cat": "things_general", "pos": "n.", "ipa": "/juːs/", "en": "the act of using", "zh": "使用；用途"}, {"w": "value", "cat": "things_general", "pos": "n.", "ipa": "/ˈvæljuː/", "en": "what a thing is worth", "zh": "价值"}, {"w": "verse", "cat": "things_general", "pos": "n.", "ipa": "/vɜːs/", "en": "poetry; a stanza", "zh": "诗句；诗节"}, {"w": "vessel", "cat": "things_general", "pos": "n.", "ipa": "/ˈvesl/", "en": "a ship; a hollow container", "zh": "容器；船"}, {"w": "view", "cat": "things_general", "pos": "n.", "ipa": "/vjuː/", "en": "sight; an opinion", "zh": "视野；观点"}, {"w": "voice", "cat": "things_general", "pos": "n.", "ipa": "/vɔɪs/", "en": "sound made by the mouth", "zh": "声音"}, {"w": "walk", "cat": "things_general", "pos": "n.", "ipa": "/wɔːk/", "en": "a stroll; a path", "zh": "步行；小路"}, {"w": "war", "cat": "things_general", "pos": "n.", "ipa": "/wɔː/", "en": "armed conflict", "zh": "战争"}, {"w": "wash", "cat": "things_general", "pos": "n.", "ipa": "/wɒʃ/", "en": "an act of cleaning", "zh": "洗；洗涤"}, {"w": "waste", "cat": "things_general", "pos": "n.", "ipa": "/weɪst/", "en": "useless material; bad use", "zh": "废物；浪费"}, {"w": "water", "cat": "things_general", "pos": "n.", "ipa": "/ˈwɔːtə/", "en": "common liquid", "zh": "水"}, {"w": "wave", "cat": "things_general", "pos": "n.", "ipa": "/weɪv/", "en": "a moving ridge; a gesture", "zh": "波浪；挥手"}, {"w": "wax", "cat": "things_general", "pos": "n.", "ipa": "/wæks/", "en": "substance made by bees", "zh": "蜡"}, {"w": "way", "cat": "things_general", "pos": "n.", "ipa": "/weɪ/", "en": "a road; a method", "zh": "路；方式"}, {"w": "weather", "cat": "things_general", "pos": "n.", "ipa": "/ˈweðə/", "en": "the state of the air", "zh": "天气"}, {"w": "week", "cat": "things_general", "pos": "n.", "ipa": "/wiːk/", "en": "seven days", "zh": "周；星期"}, {"w": "weight", "cat": "things_general", "pos": "n.", "ipa": "/weɪt/", "en": "how heavy a thing is", "zh": "重量"}, {"w": "wind", "cat": "things_general", "pos": "n.", "ipa": "/wɪnd/", "en": "moving air", "zh": "风"}, {"w": "wine", "cat": "things_general", "pos": "n.", "ipa": "/waɪn/", "en": "drink from grapes", "zh": "葡萄酒"}, {"w": "winter", "cat": "things_general", "pos": "n.", "ipa": "/ˈwɪntə/", "en": "the cold season", "zh": "冬天"}, {"w": "woman", "cat": "things_general", "pos": "n.", "ipa": "/ˈwʊmən/", "en": "adult female", "zh": "女人"}, {"w": "wood", "cat": "things_general", "pos": "n.", "ipa": "/wʊd/", "en": "material from trees", "zh": "木头"}, {"w": "wool", "cat": "things_general", "pos": "n.", "ipa": "/wʊl/", "en": "hair of sheep", "zh": "羊毛"}, {"w": "word", "cat": "things_general", "pos": "n.", "ipa": "/wɜːd/", "en": "a unit of language", "zh": "词；话"}, {"w": "work", "cat": "things_general", "pos": "n.", "ipa": "/wɜːk/", "en": "labor; a task", "zh": "工作"}, {"w": "wound", "cat": "things_general", "pos": "n.", "ipa": "/wuːnd/", "en": "an injury", "zh": "伤口"}, {"w": "writing", "cat": "things_general", "pos": "n.", "ipa": "/ˈraɪtɪŋ/", "en": "act of putting words down", "zh": "书写；作品"}, {"w": "year", "cat": "things_general", "pos": "n.", "ipa": "/jɪə/", "en": "about 365 days", "zh": "年"}, {"w": "angle", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈæŋɡl/", "en": "the corner between two lines", "zh": "角；角度"}, {"w": "ant", "cat": "things_picturable", "pos": "n.", "ipa": "/ænt/", "en": "a small social insect", "zh": "蚂蚁"}, {"w": "apple", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈæpl/", "en": "a round fruit", "zh": "苹果"}, {"w": "arch", "cat": "things_picturable", "pos": "n.", "ipa": "/ɑːtʃ/", "en": "a curved structure", "zh": "拱门"}, {"w": "arm", "cat": "things_picturable", "pos": "n.", "ipa": "/ɑːm/", "en": "limb from shoulder to hand", "zh": "手臂"}, {"w": "army", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈɑːmi/", "en": "armed forces on land", "zh": "军队；陆军"}, {"w": "baby", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈbeɪbi/", "en": "a very young child", "zh": "婴儿"}, {"w": "bag", "cat": "things_picturable", "pos": "n.", "ipa": "/bæɡ/", "en": "a container of soft material", "zh": "袋；包"}, {"w": "ball", "cat": "things_picturable", "pos": "n.", "ipa": "/bɔːl/", "en": "a round playing thing", "zh": "球"}, {"w": "band", "cat": "things_picturable", "pos": "n.", "ipa": "/bænd/", "en": "a strip; a music group", "zh": "带；乐队"}, {"w": "basin", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈbeɪsn/", "en": "a round open bowl", "zh": "盆； basin"}, {"w": "basket", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈbɑːskɪt/", "en": "a container of woven material", "zh": "篮子"}, {"w": "bath", "cat": "things_picturable", "pos": "n.", "ipa": "/bɑːθ/", "en": "a tub for washing", "zh": "浴缸；洗澡"}, {"w": "bed", "cat": "things_picturable", "pos": "n.", "ipa": "/bed/", "en": "a place to sleep", "zh": "床"}, {"w": "bee", "cat": "things_picturable", "pos": "n.", "ipa": "/biː/", "en": "an insect making honey", "zh": "蜜蜂"}, {"w": "bell", "cat": "things_picturable", "pos": "n.", "ipa": "/bel/", "en": "a ringing cup-shaped object", "zh": "铃；钟"}, {"w": "berry", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈberi/", "en": "a small soft fruit", "zh": "浆果"}, {"w": "bird", "cat": "things_picturable", "pos": "n.", "ipa": "/bɜːd/", "en": "a feathered animal", "zh": "鸟"}, {"w": "blade", "cat": "things_picturable", "pos": "n.", "ipa": "/bleɪd/", "en": "the cutting part", "zh": "刀刃；叶片"}, {"w": "board", "cat": "things_picturable", "pos": "n.", "ipa": "/bɔːd/", "en": "a flat piece of wood", "zh": "木板；委员会"}, {"w": "boat", "cat": "things_picturable", "pos": "n.", "ipa": "/bəʊt/", "en": "a small vessel", "zh": "小船"}, {"w": "bone", "cat": "things_picturable", "pos": "n.", "ipa": "/bəʊn/", "en": "hard part of body", "zh": "骨头"}, {"w": "book", "cat": "things_picturable", "pos": "n.", "ipa": "/bʊk/", "en": "pages bound together", "zh": "书"}, {"w": "boot", "cat": "things_picturable", "pos": "n.", "ipa": "/buːt/", "en": "a heavy shoe", "zh": "靴子"}, {"w": "bottle", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈbɒtl/", "en": "a vessel with a neck", "zh": "瓶子"}, {"w": "box", "cat": "things_picturable", "pos": "n.", "ipa": "/bɒks/", "en": "a square container", "zh": "盒子"}, {"w": "boy", "cat": "things_picturable", "pos": "n.", "ipa": "/bɔɪ/", "en": "a male child", "zh": "男孩"}, {"w": "brain", "cat": "things_picturable", "pos": "n.", "ipa": "/breɪn/", "en": "organ of thought in head", "zh": "脑；头脑"}, {"w": "brake", "cat": "things_picturable", "pos": "n.", "ipa": "/breɪk/", "en": "a device to stop motion", "zh": "刹车"}, {"w": "branch", "cat": "things_picturable", "pos": "n.", "ipa": "/brɑːntʃ/", "en": "an arm of a tree", "zh": "树枝；分支"}, {"w": "brick", "cat": "things_picturable", "pos": "n.", "ipa": "/brɪk/", "en": "a baked clay block", "zh": "砖"}, {"w": "bridge", "cat": "things_picturable", "pos": "n.", "ipa": "/brɪdʒ/", "en": "a structure over a gap", "zh": "桥"}, {"w": "brush", "cat": "things_picturable", "pos": "n.", "ipa": "/brʌʃ/", "en": "a tool with bristles", "zh": "刷子；画笔"}, {"w": "bucket", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈbʌkɪt/", "en": "a pail", "zh": "桶"}, {"w": "bulb", "cat": "things_picturable", "pos": "n.", "ipa": "/bʌlb/", "en": "a glass lamp; a root bud", "zh": "灯泡；球茎"}, {"w": "button", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈbʌtn/", "en": "a small disc for fastening", "zh": "纽扣；按钮"}, {"w": "cake", "cat": "things_picturable", "pos": "n.", "ipa": "/keɪk/", "en": "a sweet baked food", "zh": "蛋糕"}, {"w": "camera", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈkæmərə/", "en": "an image-taking device", "zh": "照相机"}, {"w": "card", "cat": "things_picturable", "pos": "n.", "ipa": "/kɑːd/", "en": "a small stiff paper", "zh": "卡片"}, {"w": "carriage", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈkærɪdʒ/", "en": "a wheeled vehicle", "zh": "马车；客车厢"}, {"w": "cart", "cat": "things_picturable", "pos": "n.", "ipa": "/kɑːt/", "en": "a two-wheeled wagon", "zh": "手推车"}, {"w": "cat", "cat": "things_picturable", "pos": "n.", "ipa": "/kæt/", "en": "a small household animal", "zh": "猫"}, {"w": "chain", "cat": "things_picturable", "pos": "n.", "ipa": "/tʃeɪn/", "en": "a series of metal links", "zh": "链子"}, {"w": "cheese", "cat": "things_picturable", "pos": "n.", "ipa": "/tʃiːz/", "en": "food made from milk", "zh": "奶酪"}, {"w": "chest", "cat": "things_picturable", "pos": "n.", "ipa": "/tʃest/", "en": "a large box; the upper body", "zh": "箱子；胸膛"}, {"w": "chin", "cat": "things_picturable", "pos": "n.", "ipa": "/tʃɪn/", "en": "the part below the mouth", "zh": "下巴"}, {"w": "church", "cat": "things_picturable", "pos": "n.", "ipa": "/tʃɜːtʃ/", "en": "a place of Christian worship", "zh": "教堂"}, {"w": "circle", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈsɜːkl/", "en": "a round figure", "zh": "圆；圈子"}, {"w": "clock", "cat": "things_picturable", "pos": "n.", "ipa": "/klɒk/", "en": "a timepiece", "zh": "时钟"}, {"w": "cloud", "cat": "things_picturable", "pos": "n.", "ipa": "/klaʊd/", "en": "a mass of vapor in sky", "zh": "云"}, {"w": "coat", "cat": "things_picturable", "pos": "n.", "ipa": "/kəʊt/", "en": "an outer garment", "zh": "外套"}, {"w": "collar", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈkɒlə/", "en": "the neck part of a garment", "zh": "领子"}, {"w": "comb", "cat": "things_picturable", "pos": "n.", "ipa": "/kəʊm/", "en": "a toothed tool for hair", "zh": "梳子"}, {"w": "cord", "cat": "things_picturable", "pos": "n.", "ipa": "/kɔːd/", "en": "a thick thread", "zh": "细绳；电线"}, {"w": "cow", "cat": "things_picturable", "pos": "n.", "ipa": "/kaʊ/", "en": "a large farm animal giving milk", "zh": "母牛"}, {"w": "cup", "cat": "things_picturable", "pos": "n.", "ipa": "/kʌp/", "en": "a small bowl with a handle", "zh": "杯子"}, {"w": "curtain", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈkɜːtn/", "en": "a hanging cloth at a window", "zh": "窗帘"}, {"w": "cushion", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈkʊʃn/", "en": "a soft pad", "zh": "垫子"}, {"w": "dog", "cat": "things_picturable", "pos": "n.", "ipa": "/dɒɡ/", "en": "a common household animal", "zh": "狗"}, {"w": "door", "cat": "things_picturable", "pos": "n.", "ipa": "/dɔː/", "en": "a movable entrance", "zh": "门"}, {"w": "drain", "cat": "things_picturable", "pos": "n.", "ipa": "/dreɪn/", "en": "a pipe for water to flow off", "zh": "排水管"}, {"w": "drawer", "cat": "things_picturable", "pos": "n.", "ipa": "/drɔː/", "en": "a sliding box in a desk", "zh": "抽屉"}, {"w": "dress", "cat": "things_picturable", "pos": "n.", "ipa": "/dres/", "en": "a woman's one-piece garment", "zh": "连衣裙"}, {"w": "drop", "cat": "things_picturable", "pos": "n.", "ipa": "/drɒp/", "en": "a small amount of liquid", "zh": "滴"}, {"w": "ear", "cat": "things_picturable", "pos": "n.", "ipa": "/ɪə/", "en": "organ of hearing", "zh": "耳朵"}, {"w": "egg", "cat": "things_picturable", "pos": "n.", "ipa": "/eɡ/", "en": "an oval body from a bird", "zh": "蛋"}, {"w": "engine", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈendʒɪn/", "en": "a machine giving power", "zh": "引擎"}, {"w": "eye", "cat": "things_picturable", "pos": "n.", "ipa": "/aɪ/", "en": "organ of sight", "zh": "眼睛"}, {"w": "face", "cat": "things_picturable", "pos": "n.", "ipa": "/feɪs/", "en": "the front of the head", "zh": "脸"}, {"w": "farm", "cat": "things_picturable", "pos": "n.", "ipa": "/fɑːm/", "en": "land used for crops", "zh": "农场"}, {"w": "feather", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈfeðə/", "en": "the covering of a bird", "zh": "羽毛"}, {"w": "finger", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈfɪŋɡə/", "en": "one of the five end parts of the hand", "zh": "手指"}, {"w": "fish", "cat": "things_picturable", "pos": "n.", "ipa": "/fɪʃ/", "en": "a water animal with gills", "zh": "鱼"}, {"w": "flag", "cat": "things_picturable", "pos": "n.", "ipa": "/flæɡ/", "en": "a colored cloth on a pole", "zh": "旗帜"}, {"w": "floor", "cat": "things_picturable", "pos": "n.", "ipa": "/flɔː/", "en": "the lower surface of a room", "zh": "地板；楼层"}, {"w": "fly", "cat": "things_picturable", "pos": "n.", "ipa": "/flaɪ/", "en": "a small flying insect", "zh": "苍蝇"}, {"w": "foot", "cat": "things_picturable", "pos": "n.", "ipa": "/fʊt/", "en": "the end of the leg", "zh": "脚；英尺"}, {"w": "fork", "cat": "things_picturable", "pos": "n.", "ipa": "/fɔːk/", "en": "a tool with prongs", "zh": "叉；餐叉"}, {"w": "fowl", "cat": "things_picturable", "pos": "n.", "ipa": "/faʊl/", "en": "a bird kept for food", "zh": "家禽"}, {"w": "frame", "cat": "things_picturable", "pos": "n.", "ipa": "/freɪm/", "en": "a surrounding border", "zh": "框架"}, {"w": "garden", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈɡɑːdn/", "en": "ground for growing plants", "zh": "花园"}, {"w": "girl", "cat": "things_picturable", "pos": "n.", "ipa": "/ɡɜːl/", "en": "a female child", "zh": "女孩"}, {"w": "glove", "cat": "things_picturable", "pos": "n.", "ipa": "/ɡlʌv/", "en": "a covering for the hand", "zh": "手套"}, {"w": "goat", "cat": "things_picturable", "pos": "n.", "ipa": "/ɡəʊt/", "en": "a horned farm animal", "zh": "山羊"}, {"w": "gun", "cat": "things_picturable", "pos": "n.", "ipa": "/ɡʌn/", "en": "a weapon that fires", "zh": "枪"}, {"w": "hair", "cat": "things_picturable", "pos": "n.", "ipa": "/heə/", "en": "thread-like growth on skin", "zh": "头发；毛"}, {"w": "hammer", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈhæmə/", "en": "a tool with a heavy head", "zh": "锤子"}, {"w": "hand", "cat": "things_picturable", "pos": "n.", "ipa": "/hænd/", "en": "end of the arm", "zh": "手"}, {"w": "hat", "cat": "things_picturable", "pos": "n.", "ipa": "/hæt/", "en": "a covering for the head", "zh": "帽子"}, {"w": "head", "cat": "things_picturable", "pos": "n.", "ipa": "/hed/", "en": "the top part of the body", "zh": "头"}, {"w": "heart", "cat": "things_picturable", "pos": "n.", "ipa": "/hɑːt/", "en": "organ pumping blood", "zh": "心；心脏"}, {"w": "hook", "cat": "things_picturable", "pos": "n.", "ipa": "/hʊk/", "en": "a curved piece of metal", "zh": "钩子"}, {"w": "horn", "cat": "things_picturable", "pos": "n.", "ipa": "/hɔːn/", "en": "a hard pointed growth", "zh": "角；喇叭"}, {"w": "horse", "cat": "things_picturable", "pos": "n.", "ipa": "/hɔːs/", "en": "a large riding animal", "zh": "马"}, {"w": "hospital", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈhɒspɪtl/", "en": "a place for the sick", "zh": "医院"}, {"w": "house", "cat": "things_picturable", "pos": "n.", "ipa": "/haʊs/", "en": "a building to live in", "zh": "房子"}, {"w": "island", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈaɪlənd/", "en": "land surrounded by water", "zh": "岛屿"}, {"w": "jewel", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈdʒuːəl/", "en": "a precious stone", "zh": "宝石"}, {"w": "kettle", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈketl/", "en": "a vessel for boiling water", "zh": "水壶"}, {"w": "key", "cat": "things_picturable", "pos": "n.", "ipa": "/kiː/", "en": "an instrument to open a lock", "zh": "钥匙"}, {"w": "knee", "cat": "things_picturable", "pos": "n.", "ipa": "/niː/", "en": "the joint of the leg", "zh": "膝盖"}, {"w": "knife", "cat": "things_picturable", "pos": "n.", "ipa": "/naɪf/", "en": "a cutting tool", "zh": "刀"}, {"w": "knot", "cat": "things_picturable", "pos": "n.", "ipa": "/nɒt/", "en": "a tight fastening in cord", "zh": "结；绳结"}, {"w": "leaf", "cat": "things_picturable", "pos": "n.", "ipa": "/liːf/", "en": "the green part of a plant", "zh": "叶子"}, {"w": "leg", "cat": "things_picturable", "pos": "n.", "ipa": "/leɡ/", "en": "limb for walking", "zh": "腿"}, {"w": "library", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈlaɪbrəri/", "en": "a room of books", "zh": "图书馆"}, {"w": "line", "cat": "things_picturable", "pos": "n.", "ipa": "/laɪn/", "en": "a long thin mark", "zh": "线；行"}, {"w": "lip", "cat": "things_picturable", "pos": "n.", "ipa": "/lɪp/", "en": "the edge of the mouth", "zh": "嘴唇"}, {"w": "lock", "cat": "things_picturable", "pos": "n.", "ipa": "/lɒk/", "en": "a device for fastening", "zh": "锁"}, {"w": "map", "cat": "things_picturable", "pos": "n.", "ipa": "/mæp/", "en": "a drawing of a region", "zh": "地图"}, {"w": "match", "cat": "things_picturable", "pos": "n.", "ipa": "/mætʃ/", "en": "a small stick for fire", "zh": "火柴；比赛"}, {"w": "monkey", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈmʌŋki/", "en": "a tree-climbing animal", "zh": "猴子"}, {"w": "moon", "cat": "things_picturable", "pos": "n.", "ipa": "/muːn/", "en": "the satellite of the earth", "zh": "月亮"}, {"w": "mouth", "cat": "things_picturable", "pos": "n.", "ipa": "/maʊθ/", "en": "the opening of the face", "zh": "嘴"}, {"w": "muscle", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈmʌsl/", "en": "the flesh that moves bones", "zh": "肌肉"}, {"w": "nail", "cat": "things_picturable", "pos": "n.", "ipa": "/neɪl/", "en": "a hard part on a finger; metal pin", "zh": "指甲；钉子"}, {"w": "neck", "cat": "things_picturable", "pos": "n.", "ipa": "/nek/", "en": "the part joining head and body", "zh": "脖子"}, {"w": "needle", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈniːdl/", "en": "a small sewing tool", "zh": "针"}, {"w": "nerve", "cat": "things_picturable", "pos": "n.", "ipa": "/nɜːv/", "en": "a fiber carrying signals", "zh": "神经"}, {"w": "net", "cat": "things_picturable", "pos": "n.", "ipa": "/net/", "en": "a meshed fabric", "zh": "网"}, {"w": "nose", "cat": "things_picturable", "pos": "n.", "ipa": "/nəʊz/", "en": "organ of smell", "zh": "鼻子"}, {"w": "nut", "cat": "things_picturable", "pos": "n.", "ipa": "/nʌt/", "en": "a hard-shelled seed; metal ring", "zh": "坚果；螺母"}, {"w": "office", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈɒfɪs/", "en": "a place for work", "zh": "办公室"}, {"w": "orange", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈɒrɪndʒ/", "en": "a round citrus fruit", "zh": "橙子"}, {"w": "oven", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈʌvn/", "en": "a closed box for baking", "zh": "烤箱"}, {"w": "parcel", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈpɑːsl/", "en": "a wrapped package", "zh": "包裹"}, {"w": "pen", "cat": "things_picturable", "pos": "n.", "ipa": "/pen/", "en": "an instrument for ink; an enclosure", "zh": "钢笔；圈"}, {"w": "pencil", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈpensl/", "en": "a stick of graphite for writing", "zh": "铅笔"}, {"w": "picture", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈpɪktʃə/", "en": "a drawing or painting", "zh": "图画"}, {"w": "pig", "cat": "things_picturable", "pos": "n.", "ipa": "/pɪɡ/", "en": "a stout farm animal", "zh": "猪"}, {"w": "pin", "cat": "things_picturable", "pos": "n.", "ipa": "/pɪn/", "en": "a small sharp metal fastener", "zh": "大头针"}, {"w": "pipe", "cat": "things_picturable", "pos": "n.", "ipa": "/paɪp/", "en": "a tube; a smoking device", "zh": "管子；烟斗"}, {"w": "plane", "cat": "things_picturable", "pos": "n.", "ipa": "/pleɪn/", "en": "a tool for smoothing; an aircraft", "zh": "刨子；飞机"}, {"w": "plate", "cat": "things_picturable", "pos": "n.", "ipa": "/pleɪt/", "en": "a flat dish for food", "zh": "盘子"}, {"w": "plow", "cat": "things_picturable", "pos": "n.", "ipa": "/plaʊ/", "en": "a tool for turning soil", "zh": "犁"}, {"w": "pocket", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈpɒkɪt/", "en": "a small bag sewn in clothes", "zh": "口袋"}, {"w": "pot", "cat": "things_picturable", "pos": "n.", "ipa": "/pɒt/", "en": "a deep round vessel", "zh": "锅；罐"}, {"w": "potato", "cat": "things_picturable", "pos": "n.", "ipa": "/pəˈteɪtəʊ/", "en": "a round root vegetable", "zh": "马铃薯"}, {"w": "prison", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈprɪzn/", "en": "a place of confinement", "zh": "监狱"}, {"w": "pump", "cat": "things_picturable", "pos": "n.", "ipa": "/pʌmp/", "en": "a device for lifting liquids", "zh": "泵；打气筒"}, {"w": "rail", "cat": "things_picturable", "pos": "n.", "ipa": "/reɪl/", "en": "a long metal bar; a track", "zh": "铁轨；栏杆"}, {"w": "rat", "cat": "things_picturable", "pos": "n.", "ipa": "/ræt/", "en": "a long-tailed rodent", "zh": "老鼠"}, {"w": "receipt", "cat": "things_picturable", "pos": "n.", "ipa": "/rɪˈsiːt/", "en": "a written acknowledgement", "zh": "收据"}, {"w": "ring", "cat": "things_picturable", "pos": "n.", "ipa": "/rɪŋ/", "en": "a circular band; a sound", "zh": "戒指；铃声"}, {"w": "rod", "cat": "things_picturable", "pos": "n.", "ipa": "/rɒd/", "en": "a long thin stick", "zh": "杆；棍"}, {"w": "roof", "cat": "things_picturable", "pos": "n.", "ipa": "/ruːf/", "en": "the cover of a building", "zh": "屋顶"}, {"w": "root", "cat": "things_picturable", "pos": "n.", "ipa": "/ruːt/", "en": "the part of a plant in earth", "zh": "根"}, {"w": "sail", "cat": "things_picturable", "pos": "n.", "ipa": "/seɪl/", "en": "a sheet of cloth for wind", "zh": "帆"}, {"w": "school", "cat": "things_picturable", "pos": "n.", "ipa": "/skuːl/", "en": "a place for learning", "zh": "学校"}, {"w": "scissors", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈsɪzəz/", "en": "a tool for cutting", "zh": "剪刀"}, {"w": "screw", "cat": "things_picturable", "pos": "n.", "ipa": "/skruː/", "en": "a metal pin with threads", "zh": "螺丝钉"}, {"w": "seed", "cat": "things_picturable", "pos": "n.", "ipa": "/siːd/", "en": "the part of a plant that grows", "zh": "种子"}, {"w": "sheep", "cat": "things_picturable", "pos": "n.", "ipa": "/ʃiːp/", "en": "a woolly farm animal", "zh": "羊"}, {"w": "shelf", "cat": "things_picturable", "pos": "n.", "ipa": "/ʃelf/", "en": "a flat board for things", "zh": "架子"}, {"w": "ship", "cat": "things_picturable", "pos": "n.", "ipa": "/ʃɪp/", "en": "a large sea vessel", "zh": "船"}, {"w": "shirt", "cat": "things_picturable", "pos": "n.", "ipa": "/ʃɜːt/", "en": "a garment for the upper body", "zh": "衬衫"}, {"w": "shoe", "cat": "things_picturable", "pos": "n.", "ipa": "/ʃuː/", "en": "a covering for the foot", "zh": "鞋"}, {"w": "skin", "cat": "things_picturable", "pos": "n.", "ipa": "/skɪn/", "en": "the outer covering of the body", "zh": "皮肤"}, {"w": "skirt", "cat": "things_picturable", "pos": "n.", "ipa": "/skɜːt/", "en": "a woman's garment", "zh": "裙子"}, {"w": "snake", "cat": "things_picturable", "pos": "n.", "ipa": "/sneɪk/", "en": "a long crawling animal", "zh": "蛇"}, {"w": "sock", "cat": "things_picturable", "pos": "n.", "ipa": "/sɒk/", "en": "a covering for the foot", "zh": "短袜"}, {"w": "spade", "cat": "things_picturable", "pos": "n.", "ipa": "/speɪd/", "en": "a tool for digging", "zh": "铲子"}, {"w": "sponge", "cat": "things_picturable", "pos": "n.", "ipa": "/spʌndʒ/", "en": "a soft porous thing", "zh": "海绵"}, {"w": "spoon", "cat": "things_picturable", "pos": "n.", "ipa": "/spuːn/", "en": "a tool for eating liquid", "zh": "勺子"}, {"w": "spring", "cat": "things_picturable", "pos": "n.", "ipa": "/sprɪŋ/", "en": "the season; a coiled wire; a fountain", "zh": "春天；弹簧；泉"}, {"w": "square", "cat": "things_picturable", "pos": "n.", "ipa": "/skweə/", "en": "a four equal-sided figure", "zh": "正方形；广场"}, {"w": "stamp", "cat": "things_picturable", "pos": "n.", "ipa": "/stæmp/", "en": "a small gummed label", "zh": "邮票；印章"}, {"w": "star", "cat": "things_picturable", "pos": "n.", "ipa": "/stɑː/", "en": "a shining point in the sky", "zh": "星"}, {"w": "station", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈsteɪʃn/", "en": "a stopping place; a base", "zh": "车站；站"}, {"w": "stem", "cat": "things_picturable", "pos": "n.", "ipa": "/stem/", "en": "the main stalk of a plant", "zh": "茎；干"}, {"w": "stick", "cat": "things_picturable", "pos": "n.", "ipa": "/stɪk/", "en": "a long thin piece of wood", "zh": "棍；枝条"}, {"w": "stocking", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈstɒkɪŋ/", "en": "a covering for the leg and foot", "zh": "长袜"}, {"w": "stomach", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈstʌmək/", "en": "the organ for digesting", "zh": "胃"}, {"w": "store", "cat": "things_picturable", "pos": "n.", "ipa": "/stɔː/", "en": "a shop; a supply", "zh": "商店；储备"}, {"w": "street", "cat": "things_picturable", "pos": "n.", "ipa": "/striːt/", "en": "a road in a town", "zh": "街道"}, {"w": "sun", "cat": "things_picturable", "pos": "n.", "ipa": "/sʌn/", "en": "the star that gives light", "zh": "太阳"}, {"w": "table", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈteɪbl/", "en": "a flat surface on legs", "zh": "桌子"}, {"w": "tail", "cat": "things_picturable", "pos": "n.", "ipa": "/teɪl/", "en": "the hind part of an animal", "zh": "尾巴"}, {"w": "thread", "cat": "things_picturable", "pos": "n.", "ipa": "/θred/", "en": "a thin cotton strand", "zh": "线"}, {"w": "throat", "cat": "things_picturable", "pos": "n.", "ipa": "/θrəʊt/", "en": "the front of the neck", "zh": "喉咙"}, {"w": "thumb", "cat": "things_picturable", "pos": "n.", "ipa": "/θʌm/", "en": "the short thick finger", "zh": "拇指"}, {"w": "ticket", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈtɪkɪt/", "en": "a card of admission", "zh": "票；罚单"}, {"w": "toe", "cat": "things_picturable", "pos": "n.", "ipa": "/təʊ/", "en": "one of the five ends of the foot", "zh": "脚趾"}, {"w": "tongue", "cat": "things_picturable", "pos": "n.", "ipa": "/tʌŋ/", "en": "the organ of taste; a language", "zh": "舌头；语言"}, {"w": "tooth", "cat": "things_picturable", "pos": "n.", "ipa": "/tuːθ/", "en": "a hard white part in the mouth", "zh": "牙齿"}, {"w": "town", "cat": "things_picturable", "pos": "n.", "ipa": "/taʊn/", "en": "a large group of houses", "zh": "镇；城镇"}, {"w": "train", "cat": "things_picturable", "pos": "n.", "ipa": "/treɪn/", "en": "a series of railway cars", "zh": "火车"}, {"w": "tray", "cat": "things_picturable", "pos": "n.", "ipa": "/treɪ/", "en": "a flat carrier", "zh": "托盘"}, {"w": "tree", "cat": "things_picturable", "pos": "n.", "ipa": "/triː/", "en": "a tall woody plant", "zh": "树"}, {"w": "trousers", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈtraʊzəz/", "en": "a garment for the legs", "zh": "长裤"}, {"w": "umbrella", "cat": "things_picturable", "pos": "n.", "ipa": "/ʌmˈbrelə/", "en": "a cover against rain", "zh": "雨伞"}, {"w": "wall", "cat": "things_picturable", "pos": "n.", "ipa": "/wɔːl/", "en": "the side of a building", "zh": "墙"}, {"w": "watch", "cat": "things_picturable", "pos": "n.", "ipa": "/wɒtʃ/", "en": "a small timepiece", "zh": "手表"}, {"w": "wheel", "cat": "things_picturable", "pos": "n.", "ipa": "/wiːl/", "en": "a round thing that turns", "zh": "轮子"}, {"w": "whip", "cat": "things_picturable", "pos": "n.", "ipa": "/wɪp/", "en": "a cord for striking", "zh": "鞭子"}, {"w": "whistle", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈwɪsl/", "en": "a small pipe for sound", "zh": "哨子"}, {"w": "window", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈwɪndəʊ/", "en": "an opening in a wall", "zh": "窗户"}, {"w": "wing", "cat": "things_picturable", "pos": "n.", "ipa": "/wɪŋ/", "en": "the limb of a bird", "zh": "翅膀"}, {"w": "wire", "cat": "things_picturable", "pos": "n.", "ipa": "/ˈwaɪə/", "en": "a thin metal thread", "zh": "金属线"}, {"w": "worm", "cat": "things_picturable", "pos": "n.", "ipa": "/wɜːm/", "en": "a small crawling animal", "zh": "虫；蚯蚓"}, {"w": "able", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈeɪbl/", "en": "having power to do", "zh": "能干的；有能力的"}, {"w": "acid", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈæsɪd/", "en": "sour; biting", "zh": "酸的"}, {"w": "angry", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈæŋɡri/", "en": "feeling strong displeasure", "zh": "愤怒的"}, {"w": "automatic", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˌɔːtəˈmætɪk/", "en": "self-acting", "zh": "自动的"}, {"w": "beautiful", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈbjuːtɪfl/", "en": "very pleasing to look at", "zh": "美丽的"}, {"w": "black", "cat": "qualities_general", "pos": "adj.", "ipa": "/blæk/", "en": "of the darkest color", "zh": "黑色的"}, {"w": "boiling", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈbɔɪlɪŋ/", "en": "very hot; bubbling", "zh": "沸腾的"}, {"w": "bright", "cat": "qualities_general", "pos": "adj.", "ipa": "/braɪt/", "en": "giving strong light; clever", "zh": "明亮的；聪明的"}, {"w": "broken", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈbrəʊkən/", "en": "made pieces; not working", "zh": "破碎的；坏的"}, {"w": "brown", "cat": "qualities_general", "pos": "adj.", "ipa": "/braʊn/", "en": "of the color of earth", "zh": "棕色的"}, {"w": "cheap", "cat": "qualities_general", "pos": "adj.", "ipa": "/tʃiːp/", "en": "low in price", "zh": "便宜的"}, {"w": "chemical", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈkemɪkl/", "en": "of substances; of chemistry", "zh": "化学的"}, {"w": "chief", "cat": "qualities_general", "pos": "adj.", "ipa": "/tʃiːf/", "en": "most important; leading", "zh": "主要的；首席的"}, {"w": "clean", "cat": "qualities_general", "pos": "adj.", "ipa": "/kliːn/", "en": "free from dirt", "zh": "干净的"}, {"w": "clear", "cat": "qualities_general", "pos": "adj.", "ipa": "/klɪə/", "en": "easy to see through; plain", "zh": "清楚的；晴朗的"}, {"w": "common", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈkɒmən/", "en": "shared by many; usual", "zh": "常见的；共同的"}, {"w": "complex", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈkɒmpleks/", "en": "made of many parts", "zh": "复杂的"}, {"w": "conscious", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈkɒnʃəs/", "en": "awake; aware", "zh": "有意识的；知道的"}, {"w": "cut", "cat": "qualities_general", "pos": "adj.", "ipa": "/kʌt/", "en": "made by cutting", "zh": "切开的"}, {"w": "deep", "cat": "qualities_general", "pos": "adj.", "ipa": "/diːp/", "en": "going far down", "zh": "深的"}, {"w": "dependent", "cat": "qualities_general", "pos": "adj.", "ipa": "/dɪˈpendənt/", "en": "needing support", "zh": "依赖的"}, {"w": "early", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈɜːli/", "en": "before the usual time", "zh": "早的"}, {"w": "elastic", "cat": "qualities_general", "pos": "adj.", "ipa": "/ɪˈlæstɪk/", "en": "springing back into shape", "zh": "有弹性的"}, {"w": "electric", "cat": "qualities_general", "pos": "adj.", "ipa": "/ɪˈlektrɪk/", "en": "of electricity", "zh": "电的"}, {"w": "equal", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈiːkwəl/", "en": "the same in size or value", "zh": "相等的"}, {"w": "fat", "cat": "qualities_general", "pos": "adj.", "ipa": "/fæt/", "en": "having much flesh; thick", "zh": "胖的；肥的"}, {"w": "fertile", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈfɜːtaɪl/", "en": "producing much; fruitful", "zh": "肥沃的"}, {"w": "first", "cat": "qualities_general", "pos": "adj.", "ipa": "/fɜːst/", "en": "before all others", "zh": "第一的"}, {"w": "fixed", "cat": "qualities_general", "pos": "adj.", "ipa": "/fɪkst/", "en": "made firm; set", "zh": "固定的"}, {"w": "flat", "cat": "qualities_general", "pos": "adj.", "ipa": "/flæt/", "en": "level; smooth", "zh": "平的"}, {"w": "free", "cat": "qualities_general", "pos": "adj.", "ipa": "/friː/", "en": "not bound; costing nothing", "zh": "自由的；免费的"}, {"w": "frequent", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈfriːkwənt/", "en": "happening often", "zh": "频繁的"}, {"w": "full", "cat": "qualities_general", "pos": "adj.", "ipa": "/fʊl/", "en": "holding as much as possible", "zh": "满的"}, {"w": "general", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈdʒenrəl/", "en": "of all; not special", "zh": "一般的；总的"}, {"w": "good", "cat": "qualities_general", "pos": "adj.", "ipa": "/ɡʊd/", "en": "having the right quality", "zh": "好的"}, {"w": "gray", "cat": "qualities_general", "pos": "adj.", "ipa": "/ɡreɪ/", "en": "of the color of ash", "zh": "灰色的"}, {"w": "great", "cat": "qualities_general", "pos": "adj.", "ipa": "/ɡreɪt/", "en": "large; important", "zh": "伟大的；大的"}, {"w": "hanging", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈhæŋɪŋ/", "en": "suspended from above", "zh": "悬挂的"}, {"w": "happy", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈhæpi/", "en": "feeling pleasure", "zh": "快乐的"}, {"w": "hard", "cat": "qualities_general", "pos": "adj.", "ipa": "/hɑːd/", "en": "firm; difficult", "zh": "硬的；困难的"}, {"w": "healthy", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈhelθi/", "en": "in good health", "zh": "健康的"}, {"w": "high", "cat": "qualities_general", "pos": "adj.", "ipa": "/haɪ/", "en": "tall; far above", "zh": "高的"}, {"w": "hollow", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈhɒləʊ/", "en": "having an empty space inside", "zh": "空心的"}, {"w": "important", "cat": "qualities_general", "pos": "adj.", "ipa": "/ɪmˈpɔːtnt/", "en": "of much significance", "zh": "重要的"}, {"w": "kind", "cat": "qualities_general", "pos": "adj.", "ipa": "/kaɪnd/", "en": "having a gentle nature", "zh": "仁慈的"}, {"w": "like", "cat": "qualities_general", "pos": "adj.", "ipa": "/laɪk/", "en": "similar", "zh": "相似的"}, {"w": "living", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈlɪvɪŋ/", "en": "alive", "zh": "活的"}, {"w": "long", "cat": "qualities_general", "pos": "adj.", "ipa": "/lɒŋ/", "en": "of great length", "zh": "长的"}, {"w": "male", "cat": "qualities_general", "pos": "adj.", "ipa": "/meɪl/", "en": "of the sex that begets", "zh": "男性的"}, {"w": "married", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈmærid/", "en": "having a husband or wife", "zh": "已婚的"}, {"w": "material", "cat": "qualities_general", "pos": "adj.", "ipa": "/məˈtɪəriəl/", "en": "of matter; of substance", "zh": "物质的"}, {"w": "medical", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈmedɪkl/", "en": "of the healing art", "zh": "医学的"}, {"w": "military", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈmɪlətri/", "en": "of soldiers", "zh": "军事的"}, {"w": "natural", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈnætʃrəl/", "en": "of nature; not made", "zh": "自然的"}, {"w": "necessary", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈnesəsəri/", "en": "that must be", "zh": "必要的"}, {"w": "new", "cat": "qualities_general", "pos": "adj.", "ipa": "/njuː/", "en": "not old; recently made", "zh": "新的"}, {"w": "normal", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈnɔːml/", "en": "usual; regular", "zh": "正常的"}, {"w": "open", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈəʊpən/", "en": "not shut", "zh": "开着的"}, {"w": "parallel", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈpærəlel/", "en": "running side by side", "zh": "平行的"}, {"w": "past", "cat": "qualities_general", "pos": "adj.", "ipa": "/pɑːst/", "en": "gone by in time", "zh": "过去的"}, {"w": "physical", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈfɪzɪkl/", "en": "of the body; of matter", "zh": "身体的；物理的"}, {"w": "political", "cat": "qualities_general", "pos": "adj.", "ipa": "/pəˈlɪtɪkl/", "en": "of government", "zh": "政治的"}, {"w": "poor", "cat": "qualities_general", "pos": "adj.", "ipa": "/pʊə/", "en": "having little money; low quality", "zh": "贫穷的"}, {"w": "possible", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈpɒsəbl/", "en": "that can be done", "zh": "可能的"}, {"w": "present", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈpreznt/", "en": "being here now", "zh": "在场的；目前的"}, {"w": "private", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈpraɪvət/", "en": "not public", "zh": "私人的"}, {"w": "probable", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈprɒbəbl/", "en": "likely to be true", "zh": "可能的"}, {"w": "quick", "cat": "qualities_general", "pos": "adj.", "ipa": "/kwɪk/", "en": "fast; rapid", "zh": "快的"}, {"w": "quiet", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈkwaɪət/", "en": "making no sound; calm", "zh": "安静的"}, {"w": "ready", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈredi/", "en": "prepared", "zh": "准备好的"}, {"w": "red", "cat": "qualities_general", "pos": "adj.", "ipa": "/red/", "en": "of the color of blood", "zh": "红色的"}, {"w": "regular", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈreɡjələ/", "en": "even; usual", "zh": "规则的；定期的"}, {"w": "responsible", "cat": "qualities_general", "pos": "adj.", "ipa": "/rɪˈspɒnsəbl/", "en": "answerable; trustworthy", "zh": "负责的"}, {"w": "right", "cat": "qualities_general", "pos": "adj.", "ipa": "/raɪt/", "en": "correct; just", "zh": "对的；右边的"}, {"w": "round", "cat": "qualities_general", "pos": "adj.", "ipa": "/raʊnd/", "en": "shaped like a ball", "zh": "圆的"}, {"w": "same", "cat": "qualities_general", "pos": "adj.", "ipa": "/seɪm/", "en": "not different", "zh": "相同的"}, {"w": "second", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈsekənd/", "en": "next after the first", "zh": "第二的"}, {"w": "separate", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈseprət/", "en": "not joined", "zh": "分开的"}, {"w": "serious", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈsɪəriəs/", "en": "not joking; grave", "zh": "严肃的；严重的"}, {"w": "sharp", "cat": "qualities_general", "pos": "adj.", "ipa": "/ʃɑːp/", "en": "having a thin edge; quick", "zh": "锋利的"}, {"w": "smooth", "cat": "qualities_general", "pos": "adj.", "ipa": "/smuːð/", "en": "having an even surface", "zh": "光滑的"}, {"w": "sticky", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈstɪki/", "en": "tending to adhere", "zh": "黏的"}, {"w": "stiff", "cat": "qualities_general", "pos": "adj.", "ipa": "/stɪf/", "en": "not bending", "zh": "僵硬的"}, {"w": "straight", "cat": "qualities_general", "pos": "adj.", "ipa": "/streɪt/", "en": "not bent", "zh": "直的"}, {"w": "strong", "cat": "qualities_general", "pos": "adj.", "ipa": "/strɒŋ/", "en": "having much power", "zh": "强壮的"}, {"w": "sudden", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈsʌdn/", "en": "happening quickly", "zh": "突然的"}, {"w": "sweet", "cat": "qualities_general", "pos": "adj.", "ipa": "/swiːt/", "en": "tasting like sugar", "zh": "甜的"}, {"w": "tall", "cat": "qualities_general", "pos": "adj.", "ipa": "/tɔːl/", "en": "high in stature", "zh": "高的"}, {"w": "thick", "cat": "qualities_general", "pos": "adj.", "ipa": "/θɪk/", "en": "having much depth", "zh": "厚的"}, {"w": "tight", "cat": "qualities_general", "pos": "adj.", "ipa": "/taɪt/", "en": "closely fixed", "zh": "紧的"}, {"w": "tired", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈtaɪəd/", "en": "in need of rest", "zh": "疲倦的"}, {"w": "true", "cat": "qualities_general", "pos": "adj.", "ipa": "/truː/", "en": "in agreement with fact", "zh": "真实的"}, {"w": "violent", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈvaɪələnt/", "en": "using great force", "zh": "暴力的"}, {"w": "waiting", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈweɪtɪŋ/", "en": "staying in expectation", "zh": "等待的"}, {"w": "warm", "cat": "qualities_general", "pos": "adj.", "ipa": "/wɔːm/", "en": "moderately hot", "zh": "温暖的"}, {"w": "wet", "cat": "qualities_general", "pos": "adj.", "ipa": "/wet/", "en": "covered with liquid", "zh": "湿的"}, {"w": "wide", "cat": "qualities_general", "pos": "adj.", "ipa": "/waɪd/", "en": "broad", "zh": "宽的"}, {"w": "wise", "cat": "qualities_general", "pos": "adj.", "ipa": "/waɪz/", "en": "having good judgment", "zh": "明智的"}, {"w": "yellow", "cat": "qualities_general", "pos": "adj.", "ipa": "/ˈjeləʊ/", "en": "of the color of gold", "zh": "黄色的"}, {"w": "young", "cat": "qualities_general", "pos": "adj.", "ipa": "/jʌŋ/", "en": "not old", "zh": "年轻的"}, {"w": "awake", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/əˈweɪk/", "en": "not asleep", "zh": "醒着的"}, {"w": "bad", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/bæd/", "en": "not good", "zh": "坏的"}, {"w": "bent", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/bent/", "en": "not straight", "zh": "弯曲的"}, {"w": "bitter", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ˈbɪtə/", "en": "opposite of sweet", "zh": "苦的"}, {"w": "blue", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/bluː/", "en": "of the color of the sky", "zh": "蓝色的"}, {"w": "certain", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ˈsɜːtn/", "en": "sure; fixed", "zh": "确定的"}, {"w": "cold", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/kəʊld/", "en": "not hot", "zh": "冷的"}, {"w": "complete", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/kəmˈpliːt/", "en": "whole; finished", "zh": "完整的"}, {"w": "cruel", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ˈkruːəl/", "en": "taking pleasure in pain", "zh": "残酷的"}, {"w": "dark", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/dɑːk/", "en": "with little light", "zh": "黑暗的"}, {"w": "dead", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ded/", "en": "no longer living", "zh": "死的"}, {"w": "dear", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/dɪə/", "en": "loved; costly", "zh": "亲爱的；昂贵的"}, {"w": "delicate", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ˈdelɪkət/", "en": "easily broken; soft", "zh": "精致的；脆弱的"}, {"w": "different", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ˈdɪfrənt/", "en": "not the same", "zh": "不同的"}, {"w": "dirty", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ˈdɜːti/", "en": "not clean", "zh": "脏的"}, {"w": "dry", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/draɪ/", "en": "not wet", "zh": "干的"}, {"w": "false", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/fɔːls/", "en": "not true", "zh": "假的"}, {"w": "feeble", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ˈfiːbl/", "en": "weak", "zh": "虚弱的"}, {"w": "female", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ˈfiːmeɪl/", "en": "of the sex that bears young", "zh": "女性的"}, {"w": "foolish", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ˈfuːlɪʃ/", "en": "not wise", "zh": "愚蠢的"}, {"w": "future", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ˈfjuːtʃə/", "en": "yet to come", "zh": "将来的"}, {"w": "green", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ɡriːn/", "en": "of the color of leaves", "zh": "绿色的"}, {"w": "ill", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ɪl/", "en": "not well in health", "zh": "生病的"}, {"w": "last", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/lɑːst/", "en": "coming after all others", "zh": "最后的"}, {"w": "late", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/leɪt/", "en": "after the time", "zh": "迟的"}, {"w": "left", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/left/", "en": "opposite of right", "zh": "左边的"}, {"w": "loose", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/luːs/", "en": "not tight", "zh": "松的"}, {"w": "loud", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/laʊd/", "en": "making much noise", "zh": "大声的"}, {"w": "low", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ləʊ/", "en": "not high", "zh": "低的"}, {"w": "mixed", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/mɪkst/", "en": "of different kinds together", "zh": "混合的"}, {"w": "narrow", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ˈnærəʊ/", "en": "not wide", "zh": "窄的"}, {"w": "old", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/əʊld/", "en": "not young; not new", "zh": "老的；旧的"}, {"w": "opposite", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ˈɒpəzɪt/", "en": "facing; contrary", "zh": "对面的；相反的"}, {"w": "public", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ˈpʌblɪk/", "en": "for all people", "zh": "公共的"}, {"w": "rough", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/rʌf/", "en": "not smooth", "zh": "粗糙的"}, {"w": "sad", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/sæd/", "en": "not happy", "zh": "悲伤的"}, {"w": "safe", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/seɪf/", "en": "free from danger", "zh": "安全的"}, {"w": "secret", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ˈsiːkrət/", "en": "kept from others", "zh": "秘密的"}, {"w": "short", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ʃɔːt/", "en": "not long; not tall", "zh": "短的"}, {"w": "shut", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ʃʌt/", "en": "closed", "zh": "关着的"}, {"w": "simple", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ˈsɪmpl/", "en": "not complex", "zh": "简单的"}, {"w": "slow", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/sləʊ/", "en": "not quick", "zh": "慢的"}, {"w": "small", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/smɔːl/", "en": "not large", "zh": "小的"}, {"w": "soft", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/sɒft/", "en": "not hard", "zh": "软的"}, {"w": "solid", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ˈsɒlɪd/", "en": "not liquid or gas", "zh": "固体的"}, {"w": "special", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/ˈspeʃl/", "en": "not general", "zh": "特别的"}, {"w": "strange", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/streɪndʒ/", "en": "not known; unusual", "zh": "陌生的；奇怪的"}, {"w": "thin", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/θɪn/", "en": "not thick", "zh": "薄的；瘦的"}, {"w": "white", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/waɪt/", "en": "of the color of snow", "zh": "白色的"}, {"w": "wrong", "cat": "qualities_opposites", "pos": "adj.", "ipa": "/rɒŋ/", "en": "not right", "zh": "错的"}];
+const CATS = {"operations": {"name": "操作词", "en": "Operations", "count": 100, "color": "#0071e3"}, "things_general": {"name": "通用事物", "en": "Things — General", "count": 400, "color": "#ff9f0a"}, "things_picturable": {"name": "象形事物", "en": "Things — Picturable", "count": 200, "color": "#30d158"}, "qualities_general": {"name": "通用品质", "en": "Qualities — General", "count": 100, "color": "#bf5af2"}, "qualities_opposites": {"name": "反义品质", "en": "Qualities — Opposites", "count": 50, "color": "#ff375f"}};
+const CAT_ORDER = ["operations","things_general","things_picturable","qualities_general","qualities_opposites"];
+const CAT_VAR = {operations:"--cat-ops",things_general:"--cat-tg",things_picturable:"--cat-tp",qualities_general:"--cat-qg",qualities_opposites:"--cat-qo"};
+
+// state
+let reviewed={}, mastered={};
+try{ reviewed=JSON.parse(localStorage.getItem("ogden_reviewed")||"{}"); }catch(e){reviewed={}}
+try{ mastered=JSON.parse(localStorage.getItem("ogden_mastered")||"{}"); }catch(e){mastered={}}
+let activeCat="all";
+let searchQ="";
+let azActive=null;
+
+function save(){
+  localStorage.setItem("ogden_reviewed",JSON.stringify(reviewed));
+  localStorage.setItem("ogden_mastered",JSON.stringify(mastered));
+}
+function isReviewed(w){return !!reviewed[w]}
+function isMastered(w){return !!mastered[w]}
+
+// ---- render category tabs ----
+function renderTabs(){
+  const wrap=document.getElementById("cat-tabs");
+  const tabs=[{key:"all",name:"全部",color:null,cnt:WORDS.length}];
+  CAT_ORDER.forEach(k=>{
+    tabs.push({key:k,name:CATS[k].name,color:CATS[k].color,cnt:CATS[k].count});
+  });
+  wrap.innerHTML=tabs.map(t=>`
+    <button class="cat-tab ${activeCat===t.key?"active":""}" data-cat="${t.key}">
+      ${t.color?`<span class="dot" style="background:${t.color}"></span>`:""}
+      <span>${t.name}</span><span class="cnt">${t.cnt}</span>
+    </button>`).join("");
+  wrap.querySelectorAll(".cat-tab").forEach(el=>{
+    el.addEventListener("click",()=>{activeCat=el.dataset.cat; azActive=null; renderTabs(); renderGrid();});
+  });
+}
+
+// ---- A-Z index ----
+function renderAZ(){
+  const az=document.getElementById("az-index");
+  const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  const present={};
+  WORDS.forEach(w=>{if(w.w&&w.w[0]) present[w.w[0].toUpperCase()]=true});
+  az.innerHTML=letters.map(L=>`<a href="#" data-l="${L}" class="${present[L]?"":"empty"}">${L}</a>`).join("")+
+    `<a href="#" data-l="#" style="margin-left:8px">全部</a>`;
+  az.querySelectorAll("a").forEach(a=>{
+    a.addEventListener("click",e=>{
+      e.preventDefault();
+      if(a.dataset.l==="#"){azActive=null;}
+      else{azActive=a.dataset.l; window.scrollTo({top:document.querySelector(".grid-wrap").offsetTop-180,behavior:"smooth"});}
+      renderAZ(); renderGrid();
+    });
+  });
+  az.querySelectorAll("a").forEach(a=>{
+    if(a.dataset.l===azActive) a.style.background="var(--bg-elevated)",a.style.color="var(--accent)";
+    else {a.style.background="";a.style.color=""}
+  });
+}
+
+// ---- card ----
+function cardHTML(w){
+  const r=isReviewed(w.w), m=isMastered(w.w);
+  const cls=["card"];
+  if(m) cls.push("mastered");
+  else if(r) cls.push("reviewed");
+  const color=CATS[w.cat].color;
+  return `
+  <div class="${cls.join(" ")}" data-w="${escapeAttr(w.w)}">
+    <div class="cat-strip" style="background:${color}"></div>
+    <div class="card-top">
+      <div class="word">${escapeHTML(w.w)}</div>
+      <div class="pos">${w.pos}</div>
+      <a class="oed-link" href="https://www.oed.com/search/dictionary/?q=${encodeURIComponent(w.w)}" target="_blank" rel="noopener" title="在 OED 中查阅">OED ↗</a>
+    </div>
+    <div class="ipa">${w.ipa}</div>
+    <div class="en-def">${escapeHTML(w.en)}</div>
+    <div class="zh-def">${escapeHTML(w.zh)}</div>
+    <div class="card-bottom">
+      <button class="speak-btn" data-w="${escapeAttr(w.w)}" title="发音">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 6v4h2l3 2.5v-9L5 6H3z" fill="currentColor"/><path d="M11 5.5a3 3 0 010 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      </button>
+      <div class="check-group">
+        <label class="check ${r?"checked-review":""}" data-act="review" data-w="${escapeAttr(w.w)}">
+          <input type="checkbox" ${r?"checked":""}><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span>背诵</span>
+        </label>
+        <label class="check ${m?"checked-master":""}" data-act="master" data-w="${escapeAttr(w.w)}">
+          <input type="checkbox" ${m?"checked":""}><span class="box"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span>掌握</span>
+        </label>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderGrid(){
+  const grid=document.getElementById("grid");
+  let list=WORDS;
+  if(activeCat!=="all") list=list.filter(w=>w.cat===activeCat);
+  if(azActive) list=list.filter(w=>w.w && w.w[0].toUpperCase()===azActive);
+  if(searchQ){
+    const q=searchQ.toLowerCase();
+    list=list.filter(w=>w.w.toLowerCase().includes(q)||w.zh.toLowerCase().includes(q)||w.en.toLowerCase().includes(q)||w.pos.toLowerCase().includes(q)||w.ipa.includes(q));
+  }
+  if(list.length===0){
+    grid.innerHTML=`<div class="empty-state"><div class="big">∅</div><div>没有匹配的单词</div></div>`;
+  }else{
+    grid.innerHTML=list.map(cardHTML).join("");
+  }
+  bindCards();
+}
+
+function bindCards(){
+  document.querySelectorAll(".check[data-act]").forEach(el=>{
+    el.addEventListener("click",e=>{
+      e.preventDefault(); e.stopPropagation();
+      const w=el.dataset.w, act=el.dataset.act;
+      if(act==="review"){
+        if(reviewed[w]){delete reviewed[w];}else{reviewed[w]=true;}
+      }else{
+        if(mastered[w]){delete mastered[w];}else{mastered[w]=true; reviewed[w]=true;}
+      }
+      save(); updateStats(); renderGrid();
+    });
+  });
+  document.querySelectorAll(".speak-btn").forEach(el=>{
+    el.addEventListener("click",e=>{e.stopPropagation(); speak(el.dataset.w);});
+  });
+}
+
+// ---- stats ----
+function updateStats(){
+  const rc=Object.keys(reviewed).length, mc=Object.keys(mastered).length;
+  document.getElementById("stat-reviewed").textContent=rc;
+  document.getElementById("stat-mastered").textContent=mc;
+  document.getElementById("bar-reviewed").style.width=((rc-mc)/850*100)+"%";
+  document.getElementById("bar-mastered").style.width=(mc/850*100)+"%";
+}
+// reviewed bar should be (reviewed count) and mastered is overlap on top.
+// We redefine: bar-reviewed covers (rc - mc), bar-mastered covers (mc). Together = rc.
+
+// ---- search ----
+document.getElementById("search").addEventListener("input",e=>{
+  searchQ=e.target.value.trim(); renderGrid();
+});
+
+// ---- reset ----
+document.getElementById("btn-reset").addEventListener("click",()=>{
+  if(confirm("确定重置所有背诵/掌握记录？此操作不可撤销。")){
+    reviewed={}; mastered={}; save(); updateStats(); renderGrid();
+  }
+});
+
+// ---- speech ----
+function speak(w){
+  if(!("speechSynthesis" in window)) return;
+  try{
+    const u=new SpeechSynthesisUtterance(w);
+    u.lang="en-US"; u.rate=0.95;
+    speechSynthesis.cancel();
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+
+// ---------- flashcard mode ----------
+const modal=document.getElementById("modal");
+const fcWord=document.getElementById("fc-word");
+const fcPos=document.getElementById("fc-pos");
+const fcIpa=document.getElementById("fc-ipa");
+const fcReveal=document.getElementById("fc-reveal");
+const fcHidden=document.getElementById("fc-hidden");
+const fcCounter=document.getElementById("fc-counter");
+
+let fcQueue=[]; let fcIdx=0; let fcSessionSeen=0;
+let fcIncludeMastered=false;
+let fcAutoplay=true;
+
+function pickQueue(){
+  let pool=WORDS;
+  if(!fcIncludeMastered){
+    pool=pool.filter(w=>!isMastered(w.w));
+  }
+  if(pool.length===0) return [];
+  // weight: not reviewed = 3, reviewed but not mastered = 2, mastered(included) = 1
+  const weighted=[];
+  pool.forEach(w=>{
+    const r=isReviewed(w.w), m=isMastered(w.w);
+    const weight=m?1:(r?2:3);
+    for(let i=0;i<weight;i++) weighted.push(w);
+  });
+  // shuffle weighted, then unique-take
+  for(let i=weighted.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [weighted[i],weighted[j]]=[weighted[j],weighted[i]];
+  }
+  const seen=new Set(); const out=[];
+  for(const w of weighted){ if(!seen.has(w.w)){seen.add(w.w); out.push(w);} }
+  return out;
+}
+
+function openFlash(){
+  fcQueue=pickQueue();
+  fcIdx=0; fcSessionSeen=0;
+  if(fcQueue.length===0){
+    alert("没有可抽背的单词（所有词均已掌握，可在抽背面板勾选「包含已掌握」）。");
+    return;
+  }
+  modal.classList.add("show");
+  showCard();
+}
+function closeFlash(){ modal.classList.remove("show"); }
+
+function showCard(){
+  if(fcIdx>=fcQueue.length){
+    fcQueue=fcQueue.concat(pickQueue());
+    if(fcQueue.length===0||fcIdx>=fcQueue.length){
+      fcWord.textContent="🎉";
+      fcPos.textContent="本轮完成";
+      fcIpa.textContent="";
+      fcReveal.innerHTML=`<div style="font-size:16px;color:var(--text-secondary)">本轮已复习 ${fcSessionSeen} 个词。<br>关闭后可继续抽背，已掌握的词已自动跳过。</div>`;
+      fcCounter.textContent=`${fcSessionSeen} 已完成`;
+      return;
+    }
+  }
+  const w=fcQueue[fcIdx];
+  fcWord.textContent=w.w;
+  fcPos.textContent=w.pos;
+  fcIpa.textContent=w.ipa;
+  fcReveal.innerHTML=`<div class="fc-hidden" id="fc-hidden">点击显示中文 / 英文释义</div>`;
+  document.getElementById("fc-hidden").addEventListener("click",revealCard);
+  fcCounter.textContent=`第 ${fcIdx+1} 张 · 已看 ${fcSessionSeen}`;
+  if(fcAutoplay) speak(w.w);
+}
+function revealCard(){
+  const w=fcQueue[fcIdx];
+  fcReveal.innerHTML=`
+    <div class="fc-zh">${escapeHTML(w.zh)}</div>
+    <div class="fc-en">${escapeHTML(w.en)}</div>`;
+}
+function nextCard(){fcIdx++; fcSessionSeen++; showCard();}
+function skipCard(){fcIdx++; showCard();}
+function markKnown(){
+  const w=fcQueue[fcIdx];
+  mastered[w.w]=true; reviewed[w.w]=true; save(); updateStats(); renderGrid();
+  nextCard();
+}
+function markUnknown(){
+  const w=fcQueue[fcIdx];
+  if(reviewed[w.w]) delete reviewed[w.w]; // un-review to make it appear again sooner
+  if(mastered[w.w]) delete mastered[w.w];
+  save(); updateStats(); renderGrid();
+  nextCard();
+}
+
+document.getElementById("btn-flash").addEventListener("click",openFlash);
+document.getElementById("fc-close").addEventListener("click",closeFlash);
+document.getElementById("fc-next").addEventListener("click",nextCard);
+document.getElementById("fc-skip").addEventListener("click",skipCard);
+document.getElementById("fc-known").addEventListener("click",markKnown);
+document.getElementById("fc-unknown").addEventListener("click",markUnknown);
+document.getElementById("fc-include-mastered").addEventListener("change",e=>{fcIncludeMastered=e.target.checked;});
+document.getElementById("fc-autoplay").addEventListener("change",e=>{fcAutoplay=e.target.checked;});
+modal.addEventListener("click",e=>{if(e.target===modal) closeFlash();});
+document.addEventListener("keydown",e=>{
+  if(!modal.classList.contains("show")) return;
+  if(e.key==="Escape") closeFlash();
+  else if(e.key===" "||e.key==="Enter"){e.preventDefault(); revealCard();}
+  else if(e.key==="ArrowRight") nextCard();
+  else if(e.key==="ArrowLeft") skipCard();
+  else if(e.key.toLowerCase()==="y") markKnown();
+  else if(e.key.toLowerCase()==="n") markUnknown();
+});
+
+// ---- utils ----
+function escapeHTML(s){return (s||"").replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
+function escapeAttr(s){return (s||"").replace(/"/g,"&quot;")}
+
+// ---- init ----
+renderTabs();
+renderAZ();
+renderGrid();
+updateStats();
+</script>
+</body>
+</html>
